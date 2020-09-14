@@ -1,0 +1,21 @@
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 4rem;
+    }
+    
+    ul {
+        display: flex;
+        // justify-content: center;
+    
+        li {
+            padding-top: 1rem;
+            padding-right: 1rem;
+            list-style: none;
+        }
+    }
+}
+
+
