@@ -6,11 +6,13 @@ import './EventsList.scss';
 const EventsList = (props) => {
 
     return (
-        <div className="event-list-wrapper">
+        <div className="events-section-wrapper">
             <h2>Events</h2>
-            {/* <p>
-            <Link to="/event">Event</Link>
-            </p>   */}
+            <div className="events-list-wrapper">
+                <ul>
+                    <Events />
+                </ul>
+            </div>
         </div>
     )    
 };
