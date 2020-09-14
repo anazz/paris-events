@@ -1,0 +1,18 @@
+.events-list-section-wrapper {
+    h2 {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+    }
+    
+    .events-list-wrapper {
+        .event-wrapper {
+            width: 50vh;
+            height: auto;
+            border: 1px solid blue;
+        }
+    }
+}
+

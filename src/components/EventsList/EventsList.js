@@ -1,7 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Events from './Events';
+import './EventsList.scss';
 
 const EventsList = (props) => {
+
     return (
         <div className="event-list-wrapper">
             <h2>Events</h2>

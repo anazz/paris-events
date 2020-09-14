@@ -13,24 +13,24 @@ function App() {
     
     /* useState for setting events records */
 
-    const [events, setEvents] = useState([]);
+    const [eventsResults, setEventsResults] = useState([]);
 
     /* Retrieve events records from API */
 
     // const API_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?rows=11&pretty=false&timezone=UTC`;
-    const API_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?rows=100&sort=date_start&pretty=false&timezone=UTC`;
+    const API_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?rows=1&sort=-date_start&pretty=false&timezone=UTC`;
  
     useEffect(() => {
         axios.get(API_URL)
         .then((r) => {
             console.log(r.data.records);
-            setEvents(r.data.records);
+            setEventsResults(r.data.records);
         }).catch((error) => {
             console.log(error);
         });
     }, []);
 
-    console.log(events);
+    // console.log(events);
 
     return (
         <Router>
@@ -43,16 +43,19 @@ function App() {
                 exact path='/'
                 render={()=>
                 <Fragment>
-                    <Home prods={Home}
-                        events={events}
+                    {eventsResults.map(event => (
+                    <Home prods={Home} 
+                        key= {event.record.id}
+                        event={event}
                     />
+                    ))}
                 </Fragment>
                 }
             />
             {/* Route for Events List */}
             <Route 
                 exact path='/events'
-                render={(props)=>
+                render={()=>
                 <Fragment>
                     <EventsList prods={EventsList}/>
                 </Fragment>

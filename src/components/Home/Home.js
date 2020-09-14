@@ -3,10 +3,6 @@ import axios from 'axios';
 import './Home.scss';
 
 const Home = (props) => {
-
-    const eventsList = props.events.map((event) => (
-        console.log(event.record.fields.date_start)
-    ));
     
     return (
         <div className="home-wrapper">
@@ -16,15 +12,11 @@ const Home = (props) => {
             <div className="description-wrapper">
                 <p>L'application qui permet de rechercher en direct les prochains événements Parisiens</p>
             </div>
-            <div className="event-list-wrapper">
-                <ul>
-                    <li>
-                        <div className="event-wrapper">
-                            <img src="" alt=""/>
-                            <h4>Title: </h4>
-                        </div>
-                    </li>
-                </ul>
+            <div className="events-list-wrapper">
+                <div className="event-wrapper">
+                    <img src="" alt=""/>
+                    <h4>Title: {props.event.record.fields.title}</h4>
+                </div>
             </div>
         </div>
     )    
