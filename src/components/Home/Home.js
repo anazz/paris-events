@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
 import './Home.scss';
 
 const Home = (props) => {
+
+    // const eventsList = props.events.map((event) => (
+    //     console.log(event.record.fields.date_start.keys())
+    // ));
+    
     return (
         <div className="home-wrapper">
             <div className="title--wrapper">
@@ -15,7 +21,7 @@ const Home = (props) => {
                     <li>
                         <div className="event-wrapper">
                             <img src="" alt=""/>
-                            <h2>Title: </h2>
+                            <h4>Title: </h4>
                         </div>
                     </li>
                 </ul>

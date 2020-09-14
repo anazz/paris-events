@@ -21,8 +21,8 @@
                 width: 10rem;
                 height: 0.2rem;
                 background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
-                animation: slide 0.4s forwards;
-                animation-delay: 4s;
+                animation: slide 0.5s forwards;
+                animation-delay: 1s;
                 
                 @keyframes slide {
                     100% { left: 14rem; }
@@ -37,9 +37,10 @@
                 display: block;
                 width: 14rem;
                 height: 0.2rem;
-                background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
-                animation: slidein 0.4s forwards;
-                animation-delay: 4s;
+                // background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
+                background: linear-gradient(90deg,#6e7af7 0%, #9bf8f3 100%);
+                animation: slidein 0.5s forwards;
+                animation-delay: 1s;
                 
                 @keyframes slidein {
                     100% { right: 10rem; }
@@ -51,6 +52,10 @@
 
     .description-wrapper {
         margin-top: 90px;
+
+        h2 {
+            font-size: 1.5rem;
+        }
 
         p {
             text-align: center;

@@ -1,14 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const EventsList = (props) => {
     return (
-        <div>
+        <div className="event-list-wrapper">
             <h2>Events</h2>
-            <p>
+            {/* <p>
             <Link to="/event">Event</Link>
-            </p>
-           
+            </p>   */}
         </div>
     )    
 };

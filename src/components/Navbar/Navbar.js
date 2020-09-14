@@ -5,7 +5,7 @@ import './Navbar.scss';
 const Navbar = (props) => {
     return (
         <div className="navbar-wrapper">
-            <img src="images/paper-plane.png" alt="logo paper plane image"/>
+            {/* <img src="images/paper-plane.png" alt="logo paper plane image"/> */}
                 <ul>
                     <li>
                     <Link to='/'>Accueil</Link>
