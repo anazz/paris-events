@@ -5,6 +5,23 @@ import './EventsList.scss';
 
 const EventsList = (props) => {
 
+    const [formData, setFormData] = useState({
+        category: ''
+    });
+
+    /* Setting the formData */
+    
+    const onUpdateData = (event) => {
+        event.preventDefault();
+        const name = event.target.name;
+        const value = event.target.value;
+        const data = { ...formData };
+            data[name] = value;
+            setFormData(data);
+            console.log(data); 
+    }
+
+
     return (
         <div className="events-section-wrapper">
             <h2>Events</h2>
