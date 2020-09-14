@@ -4,9 +4,9 @@ import './Home.scss';
 
 const Home = (props) => {
 
-    // const eventsList = props.events.map((event) => (
-    //     console.log(event.record.fields.date_start.keys())
-    // ));
+    const eventsList = props.events.map((event) => (
+        console.log(event.record.fields.date_start)
+    ));
     
     return (
         <div className="home-wrapper">
