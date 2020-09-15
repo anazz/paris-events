@@ -7,6 +7,8 @@ const EventsList = (props) => {
 
     const [events, setEvents] = useState([]);
 
+    const [searchResults, setSearchResults] = useState([]);
+
     const [formData, setFormData] = useState({
         category: ''
     });
@@ -18,7 +20,7 @@ const EventsList = (props) => {
             axios.get(API_SEARCH_URL)
             .then((r) => {
                 console.log(r.data.records);
-                setEvents(r.data.records);
+                setSearchResults(r.data.records);
             }).catch((error) => {
                 console.log(error);
             });
@@ -32,15 +34,16 @@ const EventsList = (props) => {
         const name = event.target.name;
         const value = event.target.value;
         const data = { ...formData };
-            data[name] = value;
-            setFormData(data);
-            console.log(data); 
+        data[name] = value;
+        setFormData(data);
+        // console.log(data); 
     };
 
-    // const onHandleChange = (event) => {
-    //         console.log(); 
-    // }
-
+    const onSubmitForm = (event) => {
+        event.preventDefault();
+        // console.log(formData);
+        setEvents(searchResults);
+	};
 
     return (
         <div className="events-section-wrapper">
@@ -49,8 +52,8 @@ const EventsList = (props) => {
             {/* SEARCH BY EVENT CATEGORY */}
 
             <div className="search-wrapper">
-                    <form>
-                        <div className="search-form-wrapper">
+                <form action="" onSubmit={onSubmitForm}>
+                    <div className="search-form-wrapper">
                         <input
                             className="form-control"
                             type="text"
@@ -59,9 +62,9 @@ const EventsList = (props) => {
                             value={formData.category}
                             onChange={onUpdateData}
                         />
-                        </div>
-                        <button className="btn btn-info" onClick={onUpdateData}>Rechercher événement</button>
-                    </form>
+                    </div>
+                    <button className="btn btn-info" id="submit" name="submit" type="submit">Rechercher événement</button>
+                </form>
             </div>
 
             {/* LISTED EVENTS */}
