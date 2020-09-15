@@ -68,7 +68,12 @@ const EventsList = (props) => {
 
             <div className="events-list-wrapper">
                 <ul>
-                    <Events />
+                    {events.map(event => (
+                    <Events 
+                        key={event.record.id}
+                        event={event}
+                    />
+                    ))}
                 </ul>
             </div>
         </div>
