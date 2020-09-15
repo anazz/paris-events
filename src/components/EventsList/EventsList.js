@@ -5,9 +5,25 @@ import './EventsList.scss';
 
 const EventsList = (props) => {
 
+    const [events, setEvents] = useState([]);
+
     const [formData, setFormData] = useState({
         category: ''
     });
+
+    const API_SEARCH_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?search=${formData.category}`;
+
+    useEffect(() => {
+        if(formData.category.length > 1) {
+            axios.get(API_SEARCH_URL)
+            .then((r) => {
+                console.log(r.data.records);
+                setEvents(r.data.records);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }    
+    }, [formData.category]);
 
     /* Setting the formData */
     
@@ -19,7 +35,11 @@ const EventsList = (props) => {
             data[name] = value;
             setFormData(data);
             console.log(data); 
-    }
+    };
+
+    // const onHandleChange = (event) => {
+    //         console.log(); 
+    // }
 
 
     return (
@@ -36,11 +56,11 @@ const EventsList = (props) => {
                             type="text"
                             id="category-search"
                             name="category"
-                            value=""
-                            onChange=""
+                            value={formData.category}
+                            onChange={onUpdateData}
                         />
                         </div>
-                        <button className="btn btn-info">Rechercher événement</button>
+                        <button className="btn btn-info" onClick={onUpdateData}>Rechercher événement</button>
                     </form>
             </div>
 
