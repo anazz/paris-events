@@ -6,13 +6,17 @@ const Home = (props) => {
     
     return (
         <div className="home-wrapper">
-            <div className="title--wrapper">
+            <div className="title-wrapper">
                 <h1>Paris Events</h1>
             </div>
             <div className="description-wrapper">
                 <p>L'application qui permet de rechercher en direct les prochains événements Parisiens</p>
             </div>
-            <div className="events-list-wrapper">
+            <div className="comming-soon-wrapper">
+                <h2 className="comming-soon-title"><span className="first">Act</span><span className="second">ua</span><span className="third">lité</span></h2>
+                <p className="comming-soon-description">Le dernier événement publié :</p>
+            </div>
+            <div className="events-wrapper">
                 <div className="event-wrapper">
                     <img src={props.event.record.fields.cover.url} alt=""/>
                     <div className="event-top-wrapper">

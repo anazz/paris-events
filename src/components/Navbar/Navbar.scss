@@ -1,19 +1,28 @@
 .navbar-wrapper {
     display: flex;
-    justify-content: center;
+    margin-right: 7rem;
 
     img {
         width: 4rem;
     }
     
     ul {
-        display: flex;
-        // justify-content: center;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
     
         li {
             padding-top: 1rem;
             padding-right: 1rem;
             list-style: none;
+
+            a {
+                color: #009DDC;
+                text-decoration: unset;
+
+                &:hover {  
+                    color: #F26430;
+                }
+            }
         }
     }
 }

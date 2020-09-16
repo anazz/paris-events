@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import EventsList from './components/EventsList/EventsList';

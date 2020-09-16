@@ -5,7 +5,7 @@
         list-style: none;
     }
     
-    .title--wrapper {
+    .title-wrapper {
         position: relative;
         
         h1 {
@@ -16,7 +16,7 @@
                 content: "";
                 position: absolute;
                 top: -1rem;
-                left: -200px;
+                left: -650px;
                 display: block;
                 width: 10rem;
                 height: 0.2rem;
@@ -32,7 +32,7 @@
             &:after {
                 content: "";
                 position: absolute;
-                right: -250px;
+                right: -650px;
                 top: 3.7rem;
                 display: block;
                 width: 14rem;
@@ -51,7 +51,7 @@
     }
 
     .description-wrapper {
-        margin-top: 90px;
+        margin: 3rem;
 
         h2 {
             font-size: 1.5rem;
@@ -62,16 +62,55 @@
         }
     }
 
-    .events-list-wrapper {
+    .comming-soon-wrapper {
+        text-align: center;
+        margin-bottom: 3rem;
+        
+        .comming-soon-title {
+            margin-left: 1rem;
+            // background: linear-gradient(#9bf8f3, #6e7af7);
+            // background-clip: text;
+            // -webkit-text-fill-color: transparent;
+            font-size: 38px;
+
+            .first, .second, .third  {
+                letter-spacing: 1.2rem;
+            }
+
+            // .second {
+            //     letter-spacing: 1rem;
+            // }
+
+            // .third {
+            //     letter-spacing: 1.5rem;
+            // }
+        }
+    }
+
+    .events-wrapper {
         display: flex;
         justify-content: center;
+        margin-bottom: 5rem;
 
         .event-wrapper {
             width: 50vh;
-            height: auto;
+            // height: auto;
             display: flex;
             flex-direction: column;
-            border: 1px solid blue;
+            background-color: #fff;
+            min-height: 540px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .2s;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            img {
+                width: 50vh;
+            }
 
             .event-top-wrapper {
                 display: flex;
@@ -100,12 +139,6 @@
                     }
                 }
             }
-
-            img {
-                width: 50vh;
-            }
-
-            
 
             .event-date {
                 margin-bottom: 1rem;

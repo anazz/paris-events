@@ -32,15 +32,15 @@ const EventsList = (props) => {
 
     /* Local Storage */
 
-    // useEffect(() => {
-    //     axios.post('/events', formData)
-    //     .then((r) => {
-    //         console.log(r.data);
-    //         localStorage.setItem(r.data);
-    //     }).catch((error) => {
-    //         console.log(error);
-    //     });
-    // }, []);
+    useEffect(() => {
+        axios.post('/events', formData)
+        .then((r) => {
+            console.log(r.data);
+            localStorage.setItem(r.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, []);
 
     /* Setting the formData */
     
@@ -78,7 +78,7 @@ const EventsList = (props) => {
                             onChange={onUpdateData}
                         />
                     </div>
-                    <button className="btn btn-info" id="submit" name="submit" type="submit">Rechercher événement</button>
+                    <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher événement</button>
                 </form>
             </div>
 

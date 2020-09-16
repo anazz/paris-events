@@ -17,9 +17,9 @@ const Events = (props) => {
 
 	return ( 
             <li key={props.event.record.id} className="event-list-el">
-                <EventSelected
+                {/* <EventSelected
                     event={props.event}
-                />
+                /> */}
                 <EventCard 
                     event={props.event}
                 />
