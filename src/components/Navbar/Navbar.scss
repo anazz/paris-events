@@ -1,6 +1,6 @@
 .navbar-wrapper {
     display: flex;
-    margin-right: 7rem;
+    margin-right: 6rem;
 
     img {
         width: 4rem;
@@ -20,7 +20,8 @@
                 text-decoration: unset;
 
                 &:hover {  
-                    color: #F26430;
+                    // color: #F26430;
+                    color: #28a745;
                 }
             }
         }

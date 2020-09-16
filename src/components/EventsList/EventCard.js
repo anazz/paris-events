@@ -3,7 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 
 const EventCard = (props) => {
 
-    // console.log(props.event.record.id);
+    // console.log(typeof props.event.record.id);
+    const id = props.event.record.id;
+    // let {slug} = useParams();
+    // console.log({slug});
 
     // const eventSelected = props.events.map((event) => (
     //     // console.log(event),
@@ -15,7 +18,7 @@ const EventCard = (props) => {
 
 	return ( 
             <div className="event-card-wrapper"> 
-                <Link to="/event">
+                <Link to={`/event/${id}`}>
                     <img src={props.event.record.fields.cover.url} alt=""/>
                 </Link>
                 <div className="card-top-wrapper">  

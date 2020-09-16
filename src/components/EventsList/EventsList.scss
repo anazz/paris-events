@@ -19,7 +19,11 @@
     }
 
     h2 {
+        margin-top: 3rem;
+        color: #009DDC;
         text-align: center;
+        font-weight: 300;
+        letter-spacing: 0.7rem;   
     }
 
     ul {
@@ -49,7 +53,7 @@
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
             &:hover {
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
 
             img {

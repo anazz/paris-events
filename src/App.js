@@ -63,12 +63,13 @@ function App() {
             />
             {/* Route for Event */}
             <Route 
-                exact path='/event'
-                render={()=>
-                <Fragment>
-                    <EventSelected prods={EventSelected}/>
-                </Fragment>
-                }
+                exact path='/event/:id'
+                // render={()=>
+                // <Fragment>
+                //     <EventSelected prods={EventSelected}/>
+                // </Fragment>
+                // }
+                children={<EventSelected />}
             />
             {/* Route for Favorite Events */}
             <Route 

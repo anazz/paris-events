@@ -62,7 +62,7 @@ const EventsList = (props) => {
 
     return (
         <div className="events-section-wrapper">
-            <h2>Events</h2>
+            <h2>Liste des événements</h2>
 
             {/* SEARCH BY EVENT CATEGORY */}
 
