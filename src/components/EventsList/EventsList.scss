@@ -1,17 +1,40 @@
 .events-section-wrapper {
+    li {
+        list-style: none;
+        padding: 1em;
+    }
+
     h2 {
         text-align: center;
     }
 
     ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 0;
+        flex-shrink: 0;
         list-style: none;
     }
     
     .events-list-wrapper {
-        .event-wrapper {
+        .event-card-wrapper {
             width: 50vh;
             height: auto;
+            display: flex;
+            flex-direction: column;
             border: 1px solid blue;
+
+            img {
+                width: 50vh;
+            }
+
+            .card-title {
+                font-size: 18px;
+            }
+
+            .card-date {
+                margin-bottom: 1rem;
+            }
         }
     }
 }

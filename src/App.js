@@ -6,7 +6,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import EventsList from './components/EventsList/EventsList';
-import Event from './components/EventsList/Event';
+import EventSelected from './components/EventsList/EventSelected';
 import FavoriteEvents from './components/FavoriteEvents/FavoriteEvents';
 
 function App() {
@@ -64,9 +64,9 @@ function App() {
             {/* Route for Event */}
             <Route 
                 exact path='/event'
-                render={(props)=>
+                render={()=>
                 <Fragment>
-                    <Event prods={Event}/>
+                    <EventSelected prods={EventSelected}/>
                 </Fragment>
                 }
             />

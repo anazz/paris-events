@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Events from './Events';
 import './EventsList.scss';
+import EventSelected from './EventSelected';
 
 const EventsList = (props) => {
 
@@ -15,6 +16,8 @@ const EventsList = (props) => {
 
     const API_SEARCH_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?search=${formData.category}`;
 
+    /* Api search query */
+
     useEffect(() => {
         if(formData.category.length > 1) {
             axios.get(API_SEARCH_URL)
@@ -26,6 +29,18 @@ const EventsList = (props) => {
             });
         }    
     }, [formData.category]);
+
+    /* Local Storage */
+
+    // useEffect(() => {
+    //     axios.post('/events', formData)
+    //     .then((r) => {
+    //         console.log(r.data);
+    //         localStorage.setItem(r.data);
+    //     }).catch((error) => {
+    //         console.log(error);
+    //     });
+    // }, []);
 
     /* Setting the formData */
     
@@ -43,7 +58,7 @@ const EventsList = (props) => {
         event.preventDefault();
         // console.log(formData);
         setEvents(searchResults);
-	};
+    };
 
     return (
         <div className="events-section-wrapper">
@@ -67,19 +82,19 @@ const EventsList = (props) => {
                 </form>
             </div>
 
-            {/* LISTED EVENTS */}
+                {/* LISTED EVENTS */}
 
-            <div className="events-list-wrapper">
-                <ul>
-                    {events.map(event => (
-                    <Events 
-                        key={event.record.id}
-                        event={event}
-                    />
-                    ))}
-                </ul>
-            </div>
-        </div>
+                <div className="events-list-wrapper">
+                    <ul>
+                        {events.map(event => (
+                        <Events 
+                            key={event.record.id}
+                            event={event}
+                        />
+                        ))}
+                    </ul>
+                </div>
+        </div>    
     )    
 };
 

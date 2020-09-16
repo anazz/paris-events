@@ -63,10 +63,53 @@
     }
 
     .events-list-wrapper {
+        display: flex;
+        justify-content: center;
+
         .event-wrapper {
             width: 50vh;
             height: auto;
+            display: flex;
+            flex-direction: column;
             border: 1px solid blue;
+
+            .event-top-wrapper {
+                display: flex;
+                justify-content: space-around;
+                margin: 1rem;
+
+                .event-title {
+                    font-size: 18px;
+                }
+
+                a {
+                    text-decoration: none;
+                }
+
+                .icon {
+                    border: 1px solid hotpink;
+                    width: 2rem;
+                    text-align: center;
+    
+                    span {
+                        font-size: 1rem;
+                    }
+
+                    &:hover {
+                        background-color: hotpink;
+                    }
+                }
+            }
+
+            img {
+                width: 50vh;
+            }
+
+            
+
+            .event-date {
+                margin-bottom: 1rem;
+            }
         }
     }
 }

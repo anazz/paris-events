@@ -14,8 +14,17 @@ const Home = (props) => {
             </div>
             <div className="events-list-wrapper">
                 <div className="event-wrapper">
-                    <img src="" alt=""/>
-                    <h4>Title: {props.event.record.fields.title}</h4>
+                    <img src={props.event.record.fields.cover.url} alt=""/>
+                    <div className="event-top-wrapper">
+                        <span className="event-title">{props.event.record.fields.title}</span>
+                        <a href="#" className="subscribe">
+                            <div className="icon">
+                                <span>&#128151;</span>
+                            </div>
+                        </a>
+                    </div>
+                    <span className="event-date">{props.event.record.fields.date_start}</span>
+                    <p className="event-description">{props.event.record.fields.lead_text}</p>
                 </div>
             </div>
         </div>
