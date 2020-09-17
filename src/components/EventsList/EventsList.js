@@ -1,8 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Events from './Events';
+import EventCard from './EventCard';
 import './EventsList.scss';
-import EventSelected from './EventSelected';
 
 const EventsList = (props) => {
 
@@ -51,12 +50,10 @@ const EventsList = (props) => {
         const data = { ...formData };
         data[name] = value;
         setFormData(data);
-        // console.log(data); 
     };
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        // console.log(formData);
         setEvents(searchResults);
     };
 
@@ -84,16 +81,18 @@ const EventsList = (props) => {
 
                 {/* LISTED EVENTS */}
 
-                <div className="events-list-wrapper">
-                    <ul>
-                        {events.map(event => (
-                        <Events 
-                            key={event.record.id}
-                            event={event}
-                        />
-                        ))}
-                    </ul>
-                </div>
+            <div className="events-list-wrapper">
+                <ul>
+                    {events.map(event => (
+                        <li key={event.record.id} className="event-list-el">
+                            <EventCard 
+                                key={event.record.id}
+                                event={event}
+                            />
+                        </li> 
+                    ))}
+                </ul>
+            </div>
         </div>    
     )    
 };

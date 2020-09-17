@@ -1,8 +1,12 @@
 import React, { useState, useEffect} from 'react';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './Home.scss';
 
 const Home = (props) => {
+
+    const id = props.event.record.id;
+    console.log(id);
     
     return (
         <div className="home-wrapper">
@@ -18,7 +22,9 @@ const Home = (props) => {
             </div>
             <div className="events-wrapper">
                 <div className="event-wrapper">
+                <Link to={`/event/${id}`} params={id}>
                     <img src={props.event.record.fields.cover.url} alt=""/>
+                </Link>    
                     <div className="event-top-wrapper">
                         <span className="event-title">{props.event.record.fields.title}</span>
                         <a href="#" className="subscribe">

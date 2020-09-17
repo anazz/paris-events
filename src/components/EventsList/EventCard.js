@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import EventSelected from './EventSelected';
 
 const EventCard = (props) => {
 
@@ -16,9 +17,9 @@ const EventCard = (props) => {
 	// 	/>
     // ));
 
-	return ( 
-            <div className="event-card-wrapper"> 
-                <Link to={`/event/${id}`}>
+	return (
+            <div className="event-card-wrapper">
+                <Link to={`/event/${id}`} params={id}>
                     <img src={props.event.record.fields.cover.url} alt=""/>
                 </Link>
                 <div className="card-top-wrapper">  
