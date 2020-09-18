@@ -7,7 +7,7 @@
     $breakpoint-phone: 576px;
     $breakpoint-small-phone: 337px;
 
-    @media (min-width: $breakpoint-small-phone) {
+    @media (max-width: $breakpoint-phone) {
         display: flex;
         flex-direction: column;
         margin-left: 0px;

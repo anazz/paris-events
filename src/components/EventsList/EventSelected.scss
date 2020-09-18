@@ -1,10 +1,25 @@
 .event-main-wrapper {
+    $breakpoint-tablet: 768px;
+    $breakpoint-phone: 576px;
+    $breakpoint-small-phone: 337px;
+
     .event-wrapper {
         display: flex;
         margin-top: 3rem;
 
+        @media (max-width: $breakpoint-phone) {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+            margin-left: 5rem;
+        }
+
         .left-wrapper {
             max-width: 60%;
+
+            @media (max-width: $breakpoint-phone) {
+                max-width: 83%;
+            }
             
             .poster-wrapper {
                 max-height: 370px;
@@ -27,6 +42,10 @@
         
         .right-wrapper {
             margin: 2rem 6rem 0;
+
+            @media (max-width: $breakpoint-phone) {
+                margin: 0 1rem 0 0;
+            }
 
             .subscribe-wrapper {
                 margin: 0.3rem 0 1.5rem;

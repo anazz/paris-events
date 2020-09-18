@@ -14,8 +14,8 @@
         writing-mode: vertical-lr;
         text-orientation: upright;
         position: fixed;
-        
-        @media (min-width: $breakpoint-small-phone) {
+
+        @media (max-width: $breakpoint-phone) {
             display: flex;
         } 
     
