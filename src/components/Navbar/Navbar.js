@@ -5,18 +5,17 @@ import './Navbar.scss';
 const Navbar = (props) => {
     return (
         <div className="navbar-wrapper">
-            {/* <img src="images/paper-plane.png" alt="logo paper plane image"/> */}
-                <ul>
-                    <li>
+            <ul>
+                <li>
                     <Link to='/'>Accueil</Link>
-                    </li>
-                    <li>
+                </li>
+                <li>
                     <Link to='/events'>Liste des événements</Link>  
-                    </li>
-                    <li>
-                        <Link to='/favorites'>Favoris</Link>
-                    </li>
-                </ul>
+                </li>
+                <li>
+                    <Link to='/favorites'>Favoris</Link>
+                </li>
+            </ul>
         </div>
     )   
 };

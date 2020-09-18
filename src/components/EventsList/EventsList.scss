@@ -39,58 +39,57 @@
     
     .events-list-wrapper {
         margin-left: 60px;
+    }
 
-        .event-card-wrapper {
+    .event-card-wrapper {
+        width: 50vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        min-height: 540px;
+        position: relative;
+        overflow: hidden;
+        transition: transform .2s;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        img {
             width: 50vh;
-            // height: auto;
+        }
+        
+        .card-top-wrapper {
             display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            min-height: 540px;
-            position: relative;
-            overflow: hidden;
-            transition: transform .2s;
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+            justify-content: space-around;
+            margin: 1rem;
 
-            &:hover {
-                transform: scale(1.05);
+            .card-title {
+                font-size: 18px;
             }
 
-            img {
-                width: 50vh;
+            a {
+                text-decoration: none;
             }
-            
-            .card-top-wrapper {
-                display: flex;
-                justify-content: space-around;
-                margin: 1rem;
 
-                .card-title {
-                    font-size: 18px;
+            .icon {
+                border: 1px solid hotpink;
+                width: 2rem;
+                text-align: center;
+
+                span {
+                    font-size: 1rem;
                 }
 
-                a {
-                    text-decoration: none;
-                }
-
-                .icon {
-                    border: 1px solid hotpink;
-                    width: 2rem;
-                    text-align: center;
-    
-                    span {
-                        font-size: 1rem;
-                    }
-
-                    &:hover, &:active {
-                        background-color: hotpink;
-                    }
+                &:hover, .active {
+                    background-color: hotpink;
                 }
             }
+        }
 
-            .card-date {
-                margin-bottom: 1rem;
-            }
+        .card-date {
+            margin-bottom: 1rem;
         }
     }
 }

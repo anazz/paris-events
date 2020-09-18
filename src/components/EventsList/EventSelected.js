@@ -4,19 +4,15 @@ import axios from 'axios';
 import './EventSelected.scss'
 
 const EventSelected = (props) => {
-    // const [idEvent, setIdEvent] = useState("");
-
+    
     let id = useParams()
     // console.log(id.id);
     const idEvent = id.id;
     console.log(idEvent);
 
-    const [eventResults, setEventResults] = useState({});
+    const [results, setResults] = useState({});
 
     const API_EVENT_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records/${idEvent}`;
-    // const eventSelected = props.events.map((event) => (
-    //     console.log(event),
-    // ));
 
     /* Api search query */
 
@@ -24,35 +20,79 @@ const EventSelected = (props) => {
         axios.get(API_EVENT_URL)
         .then((r) => {
         console.log(r.data.record.fields);
-        setEventResults(r.data.record.fields);
+        setResults(r.data.record.fields);
         }).catch((error) => {
         console.log(error);
         });   
     }, []);
 
-    console.log(eventResults.description);
-    // const eventDescription = document.write(eventResults.description);
+    // console.log(eventResults.map(record => record.id));
+    console.log(results);
+
+    /* TEMPORARY QUERY FOR FAVORITES */
+
+    const [eventResults, setEventResults] = useState({});
+
+    // const API_EVENT_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records/${idEvent}`;
+
+    useEffect(() => {
+        axios.get(API_EVENT_URL)
+        .then((r) => {
+        console.log(r.data.record);
+        setEventResults(r.data.record);
+        }).catch((error) => {
+        console.log(error);
+        });   
+    }, []);
 
     /* FAVORITES */
 
+    const STORAGE_KEY = 'favoriteEvents';
+
+    const toggleFavorite = (event) => {
+        const favorites = JSON.parse(window.localStorage.getItem('favoriteEvents')) || []; 
+        
+        // Vérification de la présence de "event" dans le tableau de favoris
+        // Si présent, on le retire, sinon on l'ajoute
+
+        let favIndex = favorites.findIndex(fav => fav.record.id === event.record.recordID);
+        let subscribe = document.getElementById("#subscribe");
+
+        if (favIndex > -1) {
+            // Suppression dans le tableau
+            favorites.splice(favIndex, 1);
+            // subscribe.style.backgroundColor = "white";
+            console.log('Favoris retiré !');
+        } else {
+            // Ajout dans le tableau
+            favorites.push(event);
+            // subscribe.style.backgroundColor = "hotpink";
+            console.log('Favoris ajouté !');
+        }
+        // Sauvegarde du tableau modifié
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+    };
+
+    const recordID = eventResults.id;
+    const record = eventResults;
+
     return (   
         <div className="event-main-wrapper">
-            {/* <h2>Event page</h2> */}
             <div className="event-wrapper">
                 <div className="left-wrapper">
-                    <h4>{eventResults.title}</h4>
+                    <h4>{results.title}</h4>
                     <div className="poster-wrapper">
-                        <img src={eventResults.cover_url} alt=""/>
+                        <img src={results.cover_url} alt=""/>
                     </div>
-                    <span>{eventResults.lead_text}</span>
+                    <span>{results.lead_text}</span>
                     <div className="description-wrapper">
-                        <p dangerouslySetInnerHTML={{__html:eventResults.description}}></p>
+                        <p dangerouslySetInnerHTML={{__html:results.description}}></p>
                     </div>
                 </div>
                 <div className="right-wrapper">
                     <div className="event-info-wrapper">
                         <div className="subscribe-wrapper">
-                            <a href="#" className="subscribe">
+                            <a href="#" className="subscribe" onClick={(e) => {toggleFavorite() }}>
                                 <div className="icon">
                                     <span>&#128151; Sauvegarder</span>
                                 </div>
@@ -60,25 +100,25 @@ const EventSelected = (props) => {
                         </div>    
                         <div className="dates-wrapper">
                             <span>Dates: </span>
-                            <p>{eventResults.date_start}</p>
+                            <p>{results.date_start}</p>
                         </div>
                         <div className="price-wrapper">
                             <span>Prix: </span>
-                            <p>{eventResults.price_detail}</p>
+                            <p>{results.price_detail}</p>
                         </div>
                         <div className="adddress-wrapper">
                             <span>Adresse: </span>
-                            <p>{eventResults.address_name}</p>
-                            <p>{eventResults.address_street}</p>
-                            <p>{eventResults.address_zipcode}, {eventResults.address_city}</p>
+                            <p>{results.address_name}</p>
+                            <p>{results.address_street}</p>
+                            <p>{results.address_zipcode}, {results.address_city}</p>
                         </div>
                         <div className="transport-wrapper">
                             <span>En transport: </span>
-                            <p>{eventResults.transport}</p>
+                            <p>{results.transport}</p>
                         </div>
                         <div className="contact-info-wrapper">
                             <span>Contact: </span>
-                            <p>☎️:{eventResults.contact_phone}</p>
+                            <p>☎️:{results.contact_phone}</p>
                         </div>
                     </div>
                 </div>
