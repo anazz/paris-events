@@ -1,6 +1,7 @@
 .navbar-wrapper {
     display: flex;
-    margin-right: 6rem;
+    // margin-right: 6rem;
+    margin-right: 18rem;
 
     img {
         width: 4rem;
@@ -9,6 +10,7 @@
     ul {
         writing-mode: vertical-rl;
         text-orientation: upright;
+        position: fixed;
     
         li {
             padding-top: 1rem;

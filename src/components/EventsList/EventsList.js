@@ -79,7 +79,7 @@ const EventsList = (props) => {
                 </form>
             </div>
 
-                {/* LISTED EVENTS */}
+            {/* LISTED EVENTS */}
 
             <div className="events-list-wrapper">
                 <ul>

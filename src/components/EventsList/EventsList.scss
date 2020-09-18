@@ -38,7 +38,7 @@
     }
     
     .events-list-wrapper {
-        margin-left: 120px;
+        margin-left: 60px;
 
         .event-card-wrapper {
             width: 50vh;
@@ -82,7 +82,7 @@
                         font-size: 1rem;
                     }
 
-                    &:hover {
+                    &:hover, &:active {
                         background-color: hotpink;
                     }
                 }

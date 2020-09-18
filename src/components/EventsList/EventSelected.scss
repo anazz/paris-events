@@ -1,0 +1,58 @@
+.event-main-wrapper {
+    .event-wrapper {
+        display: flex;
+
+        .left-wrapper {
+            max-width: 60%;
+            
+            .poster-wrapper {
+                // max-height: 100px; 
+                // text-indent: -50%;
+                // overflow: hidden;
+                max-height: 370px;
+                overflow: hidden; 
+    
+                img {
+                    // max-width: initial;
+                    display: block;
+                    max-width: 100%;
+                    height: auto !important;
+                    width: auto\9; /* ie8+9 */
+                    /* lt ie8 */
+                    -ms-interpolation-mode: bicubic;
+                }
+            }
+
+            .description-wrapper {
+                max-width: 100%;
+            }
+        }
+        
+        .right-wrapper {
+            margin: 2rem 6rem 0;
+
+            .subscribe-wrapper {
+                margin: 0.3rem 0 1.5rem;
+                
+                a {
+                    text-decoration: none;
+                }
+    
+                .icon {
+                    padding: 0.3rem;
+                    border: 1px solid hotpink;
+                    min-width: 2rem;
+                    text-align: center;
+    
+                    span {
+                        font-size: 1rem;
+                    }
+    
+                    &:hover, &:active {
+                        background-color: hotpink;
+                    }
+                }
+            }
+        }
+    }
+}

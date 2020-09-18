@@ -6,10 +6,47 @@ import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import EventsList from './components/EventsList/EventsList';
+import EventCard from './components/EventsList/EventCard';
 import EventSelected from './components/EventsList/EventSelected';
 import FavoriteEvents from './components/FavoriteEvents/FavoriteEvents';
 
 function App() {
+    /* FAVORITES */
+
+    const STORAGE_KEY = "favorites.events";
+
+    const [favorites, setFavorites] = useState('');
+
+    const fetchAll = () => {
+        return JSON.parse.localStorage.getItem(STORAGE_KEY) || [];
+        // return JSON.parse.localStorage.getItem(STORAGE_KEY);
+    };
+
+    const isFavorite = (eventID) => {
+        setFavorites(fetchAll);
+        return (favorites.find(event => event.eventID === eventID));
+    };
+
+    const saveFavorite = (event) => {
+        if (isFavorite(event.eventID)) {
+            return setFavorites(fetchAll),
+            favorites.push(event),
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites))
+        } 
+    }
+
+    const removeFavorite = (event) => {
+        if (isFavorite(event.eventID)) {
+            return setFavorites(fetchAll);
+        }
+
+        const eventIndex = favorites.findIndex(e => e.eventID === event.eventID)
+
+        if(eventIndex === -1) {
+            return favorites.splice(eventIndex, 1),
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites))
+        }    
+    }
     
     /* useState for setting events records */
 
@@ -47,6 +84,8 @@ function App() {
                     <Home prods={Home} 
                         key= {event.record.id}
                         event={event}
+                        saveFavorite={saveFavorite}
+                        removeFavorite={removeFavorite}
                     />
                     ))}
                 </Fragment>
