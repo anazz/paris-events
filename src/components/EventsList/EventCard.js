@@ -17,8 +17,6 @@ const useStateWithLocalStorage = localStorageKey => {
 
 const EventCard = (props) => {
     // console.log(typeof props.event.record.id);
-    const id = props.event.record.id;
-    const event = props.event.record;
     // let {slug} = useParams();
     // console.log({slug});
 
@@ -30,41 +28,57 @@ const EventCard = (props) => {
 	// 	/>
     // ));
 
+    
+
     /* FAVORITES */
-    const [favorites, setFavorites] = useState([]);
+    // const [favorites, setFavorites] = useState([]);
 
     const STORAGE_KEY = 'favoriteEvents';
-    const setStorage = JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [];
-    const addToStorage = localStorage.setItem(STORAGE_KEY, JSON.stringify(event));
+    
+    // const addToStorage = localStorage.setItem(STORAGE_KEY, JSON.stringify(event));
 
-    // const checkFavorite = (eventId) => {
-    //     const favorites = setFavorites(setStorage);
-    //     return (favorites.find(event => event.eventId === eventID));
-    // };
+    const toggleFavorite = (event) => {
+        const favorites = JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [];
+        
+        // Vérification de la présence de "event" dans le tableau de favoris
+        // Si présent, on le retire, sinon on l'ajoute
 
-    const addFavorite = (event) => {
-        setFavorites(setStorage);
-        favorites.push(event);
-        return localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+        let favIndex = favorites.findIndex(fav => fav.record.id === event.record.id);
+
+        if (favIndex > -1) {
+            // Suppression dans le tableau
+            favorites.splice(favIndex, 1);
+            console.log('Favoris retiré !');
+        } else {
+            // Ajout dans le tableau
+            favorites.push(event);
+            console.log('Favoris ajouté !');
+        }
+        
+        // Sauvegarde du tableau modifié
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
     };
+
+    const id = props.event.record.id;
+    const record = props.event.record;
 
 	return (
             <div className="event-card-wrapper">
                 <Link to={`/event/${id}`} params={id}>
-                    <img src={props.event.record.fields.cover.url} alt=""/>
+                    <img src={record.fields.cover.url} alt=""/>
                 </Link>
                 <div className="card-top-wrapper">  
-                    <span className="card-title">{props.event.record.fields.title}</span>
-                    <a href="#" className="subscribe" onClick={() => addFavorite(event)}>
+                    <span className="card-title">{record.fields.title}</span>
+                    <a href="#" className="subscribe" onClick={(e) => { e.preventDefault(); toggleFavorite(props.event) }}>
                         <div className="icon">
                             <span>&#128151;</span>
                         </div>
                     </a>
                     {/* <button type="button" class="btn btn-outline-success" onClick={() => addFavorite(event)}>&#128151;</button> */}
                 </div>
-                <span className="card-date">{props.event.record.fields.date_start}</span>
-                <p className="event-description">{props.event.record.fields.lead_text}</p>
-                {/* <p className="card-description">{props.event.record.fields.description.replace(/(<([^>]+)>)/ig, '')}</p>    */}
+                <span className="card-date">{record.fields.date_start}</span>
+                <p className="event-description">{record.fields.lead_text}</p>
+                {/* <p className="card-description">{record.fields.description.replace(/(<([^>]+)>)/ig, '')}</p>    */}
             </div>
 	);
 };

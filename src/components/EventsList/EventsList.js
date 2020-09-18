@@ -5,8 +5,6 @@ import './EventsList.scss';
 
 const EventsList = (props) => {
 
-    const [events, setEvents] = useState([]);
-
     const [searchResults, setSearchResults] = useState([]);
 
     const [formData, setFormData] = useState({
@@ -16,30 +14,6 @@ const EventsList = (props) => {
     const API_SEARCH_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?search=${formData.category}`;
 
     /* Api search query */
-
-    useEffect(() => {
-        if(formData.category.length > 1) {
-            axios.get(API_SEARCH_URL)
-            .then((r) => {
-                console.log(r.data.records);
-                setSearchResults(r.data.records);
-            }).catch((error) => {
-                console.log(error);
-            });
-        }    
-    }, [formData.category]);
-
-    /* Local Storage */
-
-    useEffect(() => {
-        axios.post('/events', formData)
-        .then((r) => {
-            console.log(r.data);
-            localStorage.setItem(r.data);
-        }).catch((error) => {
-            console.log(error);
-        });
-    }, []);
 
     /* Setting the formData */
     
@@ -54,7 +28,15 @@ const EventsList = (props) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        setEvents(searchResults);
+        if(formData.category.length > 1) {
+            axios.get(API_SEARCH_URL)
+            .then((r) => {
+                console.log(r.data.records);
+                setSearchResults(r.data.records);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
     };
 
     return (
@@ -71,8 +53,8 @@ const EventsList = (props) => {
                             type="text"
                             id="category-search"
                             name="category"
-                            value={formData.category}
                             onChange={onUpdateData}
+                            value={formData.category}
                         />
                     </div>
                     <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher événement</button>
@@ -83,7 +65,7 @@ const EventsList = (props) => {
 
             <div className="events-list-wrapper">
                 <ul>
-                    {events.map(event => (
+                    {searchResults && searchResults.map(event => (
                         <li key={event.record.id} className="event-list-el">
                             <EventCard 
                                 key={event.record.id}

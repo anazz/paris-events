@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 // import LocalStorageFavorites, { fetchAll, isFavorite, saveFavorite, removeFavorite } from '../services/Favorites';
 import axios from 'axios';
 import './Home.scss';
+import EventCard from '../EventsList/EventCard';
 
 const Home = (props) => {
 
@@ -61,19 +62,7 @@ const Home = (props) => {
             </div>
             <div className="events-wrapper">
                 <div className="event-wrapper">
-                <Link to={`/event/${id}`} params={id}>
-                    <img src={props.event.record.fields.cover.url} alt=""/>
-                </Link>    
-                    <div className="event-top-wrapper">
-                        <span className="event-title">{props.event.record.fields.title}</span>
-                        <a href="#" className="subscribe">
-                            <div className="icon">
-                                <span>&#128151;</span>
-                            </div>
-                        </a>
-                    </div>
-                    <span className="event-date">{props.event.record.fields.date_start}</span>
-                    <p className="event-description">{props.event.record.fields.lead_text}</p>
+                    <EventCard event={props.event} />
                 </div>
             </div>
         </div>

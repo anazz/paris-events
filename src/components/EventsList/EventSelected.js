@@ -37,7 +37,7 @@ const EventSelected = (props) => {
 
     return (   
         <div className="event-main-wrapper">
-            <h2>Event page</h2>
+            {/* <h2>Event page</h2> */}
             <div className="event-wrapper">
                 <div className="left-wrapper">
                     <h4>{eventResults.title}</h4>
@@ -46,7 +46,7 @@ const EventSelected = (props) => {
                     </div>
                     <span>{eventResults.lead_text}</span>
                     <div className="description-wrapper">
-                        <p>{eventResults.description}</p>
+                        <p dangerouslySetInnerHTML={{__html:eventResults.description}}></p>
                     </div>
                 </div>
                 <div className="right-wrapper">
