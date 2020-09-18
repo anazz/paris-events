@@ -1,4 +1,8 @@
 .events-section-wrapper {
+    $breakpoint-tablet: 768px;
+    $breakpoint-phone: 576px;
+    $breakpoint-small-phone: 337px;
+
     form {
         display: flex;
         flex-direction: column;
@@ -35,10 +39,18 @@
         top: 0;
         z-index: 999;
         list-style: none;
+
+        @media (min-width: $breakpoint-small-phone) {
+            padding-left: 0;
+        } 
     }
     
     .events-list-wrapper {
         margin-left: 60px;
+
+        @media (min-width: $breakpoint-small-phone) {
+            margin-left: 0;
+        }
     }
 
     .event-card-wrapper {
@@ -91,6 +103,14 @@
         .card-date {
             margin-bottom: 1rem;
         }
+
+        @media (min-width: $breakpoint-small-phone) {
+            width: 37vh;
+        } 
+    }
+
+    @media (min-width: $breakpoint-small-phone) {
+        margin-left: 60px;
     }
 }
 

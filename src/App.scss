@@ -2,4 +2,14 @@
     display: flex;
     overflow: unset;
     margin-left: 6rem;
+
+    $breakpoint-tablet: 768px;
+    $breakpoint-phone: 576px;
+    $breakpoint-small-phone: 337px;
+
+    @media (min-width: $breakpoint-small-phone) {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+    }
 }

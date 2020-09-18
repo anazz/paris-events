@@ -1,4 +1,8 @@
 .navbar-wrapper {
+    $breakpoint-tablet: 768px;
+    $breakpoint-phone: 576px;
+    $breakpoint-small-phone: 337px;
+
     display: flex;
     margin-right: 18rem;
 
@@ -10,6 +14,10 @@
         writing-mode: vertical-lr;
         text-orientation: upright;
         position: fixed;
+        
+        @media (min-width: $breakpoint-small-phone) {
+            display: flex;
+        } 
     
         li {
             padding-top: 1rem;
@@ -25,7 +33,7 @@
                 }
             }
         }
-    }
+    }   
 }
 
 
