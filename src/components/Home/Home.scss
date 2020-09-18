@@ -5,6 +5,10 @@
 
     position: relative;
 
+    @media (max-width: $breakpoint-phone) {
+        margin-left: 3rem;
+    }
+
     ul {
         list-style: none;
     }
@@ -152,8 +156,4 @@
             }
         }
     }
-    
-    @media (max-width: $breakpoint-phone) {
-        margin-left: 3rem;
-    } 
 }

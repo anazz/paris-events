@@ -3,6 +3,10 @@
     $breakpoint-phone: 576px;
     $breakpoint-small-phone: 337px;
 
+    @media (max-width: $breakpoint-phone) {
+        margin-left: 60px;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -111,10 +115,6 @@
         .card-date {
             margin-bottom: 1rem;
         }
-    }
-
-    @media (max-width: $breakpoint-phone) {
-        margin-left: 60px;
     }
 }
 
