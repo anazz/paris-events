@@ -1,13 +1,13 @@
 .home-wrapper {
-    $breakpoint-tablet: 768px;
-    $breakpoint-phone: 576px;
-    $breakpoint-small-phone: 337px;
+    // $breakpoint-tablet: 768px;
+    // $breakpoint-phone: 576px;
+    // $breakpoint-small-phone: 337px;
 
     position: relative;
 
-    @media (max-width: $breakpoint-phone) {
-        margin-left: 3rem;
-    }
+    // @media (max-width: $breakpoint-phone) {
+    //     margin-left: 3rem;
+    // }
 
     ul {
         list-style: none;
@@ -60,9 +60,9 @@
     .description-wrapper {
         margin: 3rem;
 
-        @media (max-width: $breakpoint-phone) {
-            margin: 2rem;
-        }
+        // @media (max-width: $breakpoint-phone) {
+        //     margin: 2rem;
+        // }
 
         h2 {
             font-size: 1.5rem;
@@ -81,9 +81,9 @@
             margin-left: 1rem;
             font-size: 38px;
 
-            @media (max-width: $breakpoint-phone) {
-                font-size: 30px;
-            } 
+            // @media (max-width: $breakpoint-phone) {
+            //     font-size: 30px;
+            // } 
 
             .first, .second, .third  {
                 letter-spacing: 1.2rem;
@@ -107,9 +107,9 @@
             transition: transform .2s;
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
-            @media (max-width: $breakpoint-phone) {
-                width: 37vh;
-            }
+            // @media (max-width: $breakpoint-phone) {
+            //     width: 37vh;
+            // }
     
             &:hover {
                 transform: scale(1.05);
@@ -118,9 +118,9 @@
             img {
                 width: 50vh;
 
-                @media (max-width: $breakpoint-phone) {
-                    width: 37vh;
-                }
+                // @media (max-width: $breakpoint-phone) {
+                //     width: 37vh;
+                // }
             }
             
             .card-top-wrapper {

@@ -1,11 +1,11 @@
 .events-section-wrapper {
-    $breakpoint-tablet: 768px;
-    $breakpoint-phone: 576px;
-    $breakpoint-small-phone: 337px;
+    // $breakpoint-tablet: 768px;
+    // $breakpoint-phone: 576px;
+    // $breakpoint-small-phone: 337px;
 
-    @media (max-width: $breakpoint-phone) {
-        margin-left: 60px;
-    }
+    // @media (max-width: $breakpoint-phone) {
+    //     margin-left: 60px;
+    // }
 
     form {
         display: flex;
@@ -44,17 +44,17 @@
         z-index: 999;
         list-style: none;
 
-        @media (max-width: $breakpoint-phone) {
-            padding-left: 0;
-        } 
+        // @media (max-width: $breakpoint-phone) {
+        //     padding-left: 0;
+        // } 
     }
     
     .events-list-wrapper {
         margin-left: 60px;
 
-        @media (max-width: $breakpoint-phone) {
-            margin-left: 0;
-        }
+        // @media (max-width: $breakpoint-phone) {
+        //     margin-left: 0;
+        // }
     }
 
     .event-card-wrapper {
@@ -68,9 +68,9 @@
         transition: transform .2s;
         box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
-        @media (max-width: $breakpoint-phone) {
-            width: 37vh;
-        } 
+        // @media (max-width: $breakpoint-phone) {
+        //     width: 37vh;
+        // } 
 
         &:hover {
             transform: scale(1.05);
@@ -79,9 +79,9 @@
         img {
             width: 50vh;
 
-            @media (max-width: $breakpoint-phone) {
-                width: 37vh;
-            }
+            // @media (max-width: $breakpoint-phone) {
+            //     width: 37vh;
+            // }
         }
         
         .card-top-wrapper {

@@ -1,15 +1,15 @@
+$breakpoint-tablet: 768px;
+$breakpoint-phone: 576px;
+$breakpoint-small-phone: 337px;
+
 .App {
-    $breakpoint-tablet: 768px;
-    $breakpoint-phone: 576px;
-    $breakpoint-small-phone: 337px;
-    
     display: flex;
     overflow: unset;
     margin-left: 6rem;
 
-    @media (max-width: $breakpoint-phone) {
-        display: flex;
-        flex-direction: column;
-        margin-left: 0px;
-    }
+    // @media (max-width: $breakpoint-phone) {
+    //     display: flex;
+    //     flex-direction: column;
+    //     margin-left: 0px;
+    // }
 }

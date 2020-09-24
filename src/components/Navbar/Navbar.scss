@@ -1,7 +1,7 @@
 .navbar-wrapper {
-    $breakpoint-tablet: 768px;
-    $breakpoint-phone: 576px;
-    $breakpoint-small-phone: 337px;
+    // $breakpoint-tablet: 768px;
+    // $breakpoint-phone: 576px;
+    // $breakpoint-small-phone: 337px;
 
     display: flex;
     margin-right: 18rem;
@@ -15,9 +15,9 @@
         text-orientation: upright;
         position: fixed;
 
-        @media (max-width: $breakpoint-phone) {
-            display: flex;
-        } 
+        // @media (max-width: $breakpoint-phone) {
+        //     display: flex;
+        // } 
     
         li {
             padding-top: 1rem;
