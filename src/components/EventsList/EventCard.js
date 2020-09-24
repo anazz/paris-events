@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import EventSelected from './EventSelected';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './EventsList.scss';
+
 
 const EventCard = (props) => {
 
@@ -43,9 +46,11 @@ const EventCard = (props) => {
             </Link>
             <div className="card-top-wrapper">  
                 <span className="card-title">{record.fields.title}</span>
-                <a href="#" id="#subscribe" className="subscribe" onClick={(e) => {toggleFavorite(props.event)}}>
+                <a href="#" id="#subscribe" className="subscribe" onClick={(e) => {toggleFavorite(props.event)}}>                   
                     <div className="icon" id="#icon">
-                        <span>&#128151;</span>
+                        {/* <span>&#128151;</span> */}
+                        {/* <i class="fa">&#xf08a;</i> */}
+                        <i className="fa fa-heart-o" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
