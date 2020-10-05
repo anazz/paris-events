@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import EventCard from '../EventsList/EventCard';
 import './EventSelected.scss'
 
 const EventSelected = (props) => {
@@ -31,21 +32,25 @@ const EventSelected = (props) => {
 
     /* TEMPORARY QUERY FOR FAVORITES */
 
-    const [eventResults, setEventResults] = useState({});
+    const [eventResult, setEventResult] = useState({});
 
     // const API_EVENT_URL = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records/${idEvent}`;
 
     useEffect(() => {
         axios.get(API_EVENT_URL)
         .then((r) => {
-        console.log(r.data.record);
-        setEventResults(r.data.record);
+        console.log(r.data);
+        setEventResult(r.data);
         }).catch((error) => {
         console.log(error);
         });   
     }, []);
 
+    console.log(eventResult.record);
+
     /* FAVORITES */
+
+    const [likes, setLikes] = useState();
 
     const STORAGE_KEY = 'favoriteEvents';
 
@@ -55,26 +60,37 @@ const EventSelected = (props) => {
         // Vérification de la présence de "event" dans le tableau de favoris
         // Si présent, on le retire, sinon on l'ajoute
 
-        let favIndex = favorites.findIndex(fav => fav.record.id === event.record.recordID);
-        let subscribe = document.getElementById("#subscribe");
+        let favIndex = favorites.findIndex(fav => fav.record.id === event.record.id);
+        // console.log(favIndex);
 
         if (favIndex > -1) {
             // Suppression dans le tableau
             favorites.splice(favIndex, 1);
-            // subscribe.style.backgroundColor = "white";
+            // window.location.reload();
+            setLikes(false);
+            if(window.location.pathname=="/favorites") {
+                window.location.reload();
+            }
             console.log('Favoris retiré !');
         } else {
             // Ajout dans le tableau
             favorites.push(event);
-            // subscribe.style.backgroundColor = "hotpink";
+            setLikes(true);
             console.log('Favoris ajouté !');
         }
         // Sauvegarde du tableau modifié
         localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
     };
 
-    const recordID = eventResults.id;
-    const record = eventResults;
+    /* Check if event is in Local Storage, to apply a certain style on the event card */
+    // const STORAGE_KEY = 'favoriteEvents';
+    // const [storageKeys, setStorageKeys] = useState([]);
+    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+    // console.log(storage);
+    const filterEvent = storage.filter(element => element.record.id == idEvent);
+    const findEvent = storage.find(element => element.record.id == idEvent);
+    // console.log(findEvent);
+    // storage.forEach(element => console.log(Array.from((element.record.id))));
 
     return (   
         <div className="event-main-wrapper">
@@ -92,9 +108,14 @@ const EventSelected = (props) => {
                 <div className="right-wrapper">
                     <div className="event-info-wrapper">
                         <div className="subscribe-wrapper">
-                            <a href="#" className="subscribe" onClick={(e) => {toggleFavorite() }}>
+                            <a href="#" className="subscribe" onClick={(e) => {toggleFavorite(eventResult)}}>
                                 <div className="icon">
-                                    <span>&#128151; Sauvegarder</span>
+                                    {/* <span>&#128151; Sauvegarder</span> */}
+                                    <i className={likes==true || 
+                                        window.location.pathname=="/favorites" ||
+                                        storage.find(element => element.record.id == idEvent)
+                                        ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
+                                    <span>Sauvegarder</span>
                                 </div>
                             </a>
                         </div>    

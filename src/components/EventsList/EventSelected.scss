@@ -50,7 +50,8 @@
             .subscribe-wrapper {
                 margin: 0.3rem 0 1.5rem;
                 
-                a {
+                .subscribe {
+                    color: red;
                     text-decoration: none;
                 }
     
@@ -61,11 +62,13 @@
                     text-align: center;
     
                     span {
+                        padding-left: 1rem;
+                        color: #009DDC;
                         font-size: 1rem;
                     }
     
                     &:hover, &:active {
-                        background-color: hotpink;
+                        background-color: lightblue;
                     }
                 }
             }

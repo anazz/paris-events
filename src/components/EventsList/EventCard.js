@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EventSelected from './EventSelected';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,6 +9,8 @@ import './EventsList.scss';
 const EventCard = (props) => {
 
     /* FAVORITES */
+
+    const [likes, setLikes] = useState();
 
     const STORAGE_KEY = 'favoriteEvents';
 
@@ -24,12 +26,16 @@ const EventCard = (props) => {
         if (favIndex > -1) {
             // Suppression dans le tableau
             favorites.splice(favIndex, 1);
-            // subscribe.style.backgroundColor = "white";
+            // window.location.reload();
+            setLikes(false);
+            if(window.location.pathname=="/favorites") {
+                window.location.reload();
+            }
             console.log('Favoris retiré !');
         } else {
             // Ajout dans le tableau
             favorites.push(event);
-            // subscribe.style.backgroundColor = "hotpink";
+            setLikes(true);
             console.log('Favoris ajouté !');
         }
         // Sauvegarde du tableau modifié
@@ -39,6 +45,16 @@ const EventCard = (props) => {
     const id = props.event.record.id;
     const record = props.event.record;
 
+    /* Check if event is in Local Storage, to apply a certain style on the event card */
+    // const STORAGE_KEY = 'favoriteEvents';
+    // const [storageKeys, setStorageKeys] = useState([]);
+    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+    // console.log(storage);
+    const filterEvent = storage.filter(element => element.record.id == id);
+    const findEvent = storage.find(element => element.record.id == id);
+    // console.log(findEvent);
+    // storage.forEach(element => console.log(Array.from((element.record.id))));
+
 	return (
         <div className="event-card-wrapper">
             <Link to={`/event/${id}`} params={id}>
@@ -46,11 +62,14 @@ const EventCard = (props) => {
             </Link>
             <div className="card-top-wrapper">  
                 <span className="card-title">{record.fields.title}</span>
-                <a href="#" id="#subscribe" className="subscribe" onClick={(e) => {toggleFavorite(props.event)}}>                   
+                <a href="#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
                     <div className="icon" id="#icon">
                         {/* <span>&#128151;</span> */}
                         {/* <i class="fa">&#xf08a;</i> */}
-                        <i className="fa fa-heart-o" aria-hidden="true"></i>
+                        <i className={likes==true || 
+                        window.location.pathname=="/favorites" ||
+                        storage.find(element => element.record.id == id)
+                        ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
