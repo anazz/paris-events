@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './FavoriteEvents.scss';
 import EventCard from '../EventsList/EventCard';
 import '../EventsList/EventsList.scss';

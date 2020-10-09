@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import EventCard from './EventCard';
 import './EventsList.scss';
@@ -57,7 +57,7 @@ const EventsList = (props) => {
                             value={formData.category}
                         />
                     </div>
-                    <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher événement</button>
+                    <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher</button>
                 </form>
             </div>
 

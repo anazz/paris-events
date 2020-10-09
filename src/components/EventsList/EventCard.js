@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import EventSelected from './EventSelected';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './EventsList.scss';
 
 
@@ -28,7 +25,7 @@ const EventCard = (props) => {
             favorites.splice(favIndex, 1);
             // window.location.reload();
             setLikes(false);
-            if(window.location.pathname=="/favorites") {
+            if(window.location.pathname === "/favorites") {
                 window.location.reload();
             }
             console.log('Favoris retiré !');
@@ -48,10 +45,12 @@ const EventCard = (props) => {
     /* Check if event is in Local Storage, to apply a certain style on the event card */
     // const STORAGE_KEY = 'favoriteEvents';
     // const [storageKeys, setStorageKeys] = useState([]);
-    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+
+    // const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+
     // console.log(storage);
-    const filterEvent = storage.filter(element => element.record.id == id);
-    const findEvent = storage.find(element => element.record.id == id);
+    // const filterEvent = storage.filter(element => element.record.id == id);
+    // const findEvent = storage.find(element => element.record.id == id);
     // console.log(findEvent);
     // storage.forEach(element => console.log(Array.from((element.record.id))));
 
@@ -62,13 +61,13 @@ const EventCard = (props) => {
             </Link>
             <div className="card-top-wrapper">  
                 <span className="card-title">{record.fields.title}</span>
-                <a href="#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
+                <a href="/#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
                     <div className="icon" id="#icon">
                         {/* <span>&#128151;</span> */}
                         {/* <i class="fa">&#xf08a;</i> */}
-                        <i className={likes==true || 
-                        window.location.pathname=="/favorites" ||
-                        storage.find(element => element.record.id == id)
+                        <i className={likes === true || 
+                        window.location.pathname === "/favorites"
+                        // storage.find(element => element.record.id === id)
                         ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
                     </div>
                 </a>

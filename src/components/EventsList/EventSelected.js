@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import EventCard from '../EventsList/EventCard';
 import './EventSelected.scss'
 
 const EventSelected = (props) => {
@@ -25,7 +24,7 @@ const EventSelected = (props) => {
         }).catch((error) => {
         console.log(error);
         });   
-    }, []);
+    });
 
     // console.log(eventResults.map(record => record.id));
     console.log(results);
@@ -44,7 +43,7 @@ const EventSelected = (props) => {
         }).catch((error) => {
         console.log(error);
         });   
-    }, []);
+    });
 
     console.log(eventResult.record);
 
@@ -68,7 +67,7 @@ const EventSelected = (props) => {
             favorites.splice(favIndex, 1);
             // window.location.reload();
             setLikes(false);
-            if(window.location.pathname=="/favorites") {
+            if(window.location.pathname === "/favorites") {
                 window.location.reload();
             }
             console.log('Favoris retiré !');
@@ -87,8 +86,8 @@ const EventSelected = (props) => {
     // const [storageKeys, setStorageKeys] = useState([]);
     const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
     // console.log(storage);
-    const filterEvent = storage.filter(element => element.record.id == idEvent);
-    const findEvent = storage.find(element => element.record.id == idEvent);
+    // const filterEvent = storage.filter(element => element.record.id == idEvent);
+    // const findEvent = storage.find(element => element.record.id == idEvent);
     // console.log(findEvent);
     // storage.forEach(element => console.log(Array.from((element.record.id))));
 
@@ -108,12 +107,12 @@ const EventSelected = (props) => {
                 <div className="right-wrapper">
                     <div className="event-info-wrapper">
                         <div className="subscribe-wrapper">
-                            <a href="#" className="subscribe" onClick={(e) => {toggleFavorite(eventResult)}}>
+                            <a href="/#" className="subscribe" onClick={(e) => {toggleFavorite(eventResult)}}>
                                 <div className="icon">
                                     {/* <span>&#128151; Sauvegarder</span> */}
-                                    <i className={likes==true || 
-                                        window.location.pathname=="/favorites" ||
-                                        storage.find(element => element.record.id == idEvent)
+                                    <i className={likes === true || 
+                                        window.location.pathname === "/favorites" ||
+                                        storage.find(element => element.record.id === idEvent)
                                         ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
                                     <span>Sauvegarder</span>
                                 </div>
@@ -139,7 +138,7 @@ const EventSelected = (props) => {
                         </div>
                         <div className="contact-info-wrapper">
                             <span>Contact: </span>
-                            <p>☎️:{results.contact_phone}</p>
+                            <span role="img" aria-label="xxxxx">☎️:{results.contact_phone}</span>
                         </div>
                     </div>
                 </div>
