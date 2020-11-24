@@ -1,19 +1,33 @@
+@import './src/style/styles.scss';
+
 .navbar-wrapper {
-    // $breakpoint-tablet: 768px;
-    // $breakpoint-phone: 576px;
-    // $breakpoint-small-phone: 337px;
-
     display: flex;
-    margin-right: 18rem;
+    margin-left: 4rem;
+    margin-right: 6rem;
 
-    img {
-        width: 4rem;
+    @include max-responsive(md) {
+        margin-right: 5rem;
+    }
+
+    .homepage-image {
+        position: fixed;
+        width: 90px;
+        height: 90px;
+        margin: 2.2rem;
+        border: 1px solid transparent;
+        border-radius: 50%;
     }
     
     ul {
+        display: block;
+        margin: 4.5rem 0 0 1.5rem;
         writing-mode: vertical-lr;
         text-orientation: upright;
         position: fixed;
+        
+        @include max-responsive(md) {
+            display: flex;
+        }
 
         // @media (max-width: $breakpoint-phone) {
         //     display: flex;
@@ -26,6 +40,7 @@
 
             a {
                 color: #009DDC;
+                font-size: 18px;
                 text-decoration: unset;
 
                 &:hover {  

@@ -28,6 +28,12 @@ const EventsList = (props) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault();
+        // const searchInput = document.getElementById('category-search');
+        // const pageTitle = document.querySelector('h2');
+        // const eventsList = document.getElementById('events-list');
+        //     eventsList.style.paddingLeft = '8.1rem';
+        //     pageTitle.style.marginLeft = '17rem';
+        //     searchInput.style.width = '60%';
         if(formData.category.length > 1) {
             axios.get(API_SEARCH_URL)
             .then((r) => {
@@ -41,39 +47,56 @@ const EventsList = (props) => {
 
     return (
         <div className="events-section-wrapper">
-            <h2>Liste des événements</h2>
-
-            {/* SEARCH BY EVENT CATEGORY */}
-
-            <div className="search-wrapper">
-                <form action="" onSubmit={onSubmitForm}>
-                    <div className="search-form-wrapper">
-                        <input
-                            className="form-control"
-                            type="text"
-                            id="category-search"
-                            name="category"
-                            onChange={onUpdateData}
-                            value={formData.category}
-                        />
+            <div className="fluid-grid">
+                <div className="row">
+                    <div className="col-offset-1 col-9">
+                        <div className="title-wrapper">
+                            <h2>Liste des événements</h2>
+                        </div>
                     </div>
-                    <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher</button>
-                </form>
-            </div>
+                </div>
 
-            {/* LISTED EVENTS */}
+                {/* SEARCH BY EVENT CATEGORY */}
 
-            <div className="events-list-wrapper">
-                <ul>
-                    {searchResults && searchResults.map(event => (
-                        <li key={event.record.id} className="event-list-el">
-                            <EventCard 
-                                key={event.record.id}
-                                event={event}
-                            />
-                        </li> 
-                    ))}
-                </ul>
+                <div className="row">
+                    <div className="col-offset-1 col-6">
+                        <div className="search-wrapper">
+                            <form action="" onSubmit={onSubmitForm}>
+                                <div className="search-form-wrapper">
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        id="category-search"
+                                        name="category"
+                                        onChange={onUpdateData}
+                                        value={formData.category}
+                                        placeholder="Recherchez des événements, par catégorie(example: cinéma, concerts...)"
+                                    />
+                                </div>
+                                <button className="btn btn-outline-success" id="submit" name="submit" type="submit">Rechercher</button>
+                            </form>
+                        </div>
+                    </div>    
+                </div>
+
+                {/* LISTED EVENTS */}
+
+                <div className="row">
+                    <div className="col-9">
+                        <div className="events-list-wrapper">
+                            <ul id="events-list">
+                                {searchResults && searchResults.map(event => (
+                                    <li key={event.record.id} className="event-list-el">
+                                        <EventCard 
+                                            key={event.record.id}
+                                            event={event}
+                                        />
+                                    </li> 
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>    
     )    

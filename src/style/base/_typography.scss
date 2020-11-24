@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "ElroNet-Monospace"; 
+  src:
+    url("/src/public/fonts/Elronmonospace.woff") format('woff2'),
+    url("/src/public/fonts/Elronmonospace.woff2") format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+$font-primary: 'ElroNet-Monospace', 'Arial', sans-serif;

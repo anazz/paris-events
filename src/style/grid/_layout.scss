@@ -1,0 +1,314 @@
+@mixin computeResponsiveGridWidth() {
+  @each $breakpoint, $max-width in $responsive-max-containers {
+    @include responsive($breakpoint) {
+      width: calc(100vw - (#{map-get($responsive-outter-margins, $breakpoint)} * 2));
+      max-width: calc(#{$max-width} - (#{map-get($responsive-outter-margins, $breakpoint)} * 2));
+    }
+  }
+}
+
+@mixin computeResponsiveRowMargins() {
+  @each $breakpoint, $gutter-size in $responsive-inner-gutters {
+    @include responsive($breakpoint) {
+      margin-right: (-$gutter-size / 2);
+      margin-left: (-$gutter-size / 2);
+    }
+  }
+}
+
+@mixin computeResponsiveColWidth($ratio, $max-containers, $outter-margins, $inner-gutters) {
+  @each $breakpoint, $max-width in $max-containers {
+    @include responsive($breakpoint) {
+      flex-basis: calc(
+        (#{$ratio} * 100vw) -
+        (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) +
+        (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+      );
+      width: calc(
+        (#{$ratio} * 100vw) -
+        (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) +
+        (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+      );
+      max-width: calc(
+        (#{$ratio} * #{$max-width}) -
+        (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) +
+        (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+      );
+      padding-right: (map-get($inner-gutters, $breakpoint) / 2);
+      padding-left: (map-get($inner-gutters, $breakpoint) / 2);
+    }
+  }
+}
+
+@mixin computeResponsiveColOffset($ratio, $max-containers, $outter-margins, $inner-gutters) {
+  @each $breakpoint, $max-width in $max-containers {
+    @include responsive($breakpoint) {
+      margin-left: calc(
+        (#{$ratio} * 100vw) -
+        (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) +
+        (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+      );
+    }
+
+    @if (index($responsive-max-containers-keys, $breakpoint) == length($responsive-max-containers-keys)) {
+      @media (min-width: $max-width) {
+        margin-left: calc(
+          (#{$ratio} * #{$max-width}) -
+          (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) +
+          (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+        );
+      }
+    }
+  }
+}
+
+@mixin computeResponsiveColXLap($ratio, $max-containers, $outter-margins, $inner-gutters) {
+  @each $breakpoint, $max-width in $max-containers {
+    @include responsive($breakpoint) {
+      margin-right: calc(
+        (-#{$ratio} * 100vw) +
+        (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) -
+        (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+      );
+    }
+
+    @if (index($responsive-max-containers-keys, $breakpoint) == length($responsive-max-containers-keys)) {
+      @media (min-width: $max-width) {
+        margin-right: calc(
+          (-#{$ratio} * #{$max-width}) +
+          (#{$ratio} * #{map-get($outter-margins, $breakpoint)} * 2) -
+          (#{$ratio} * #{map-get($inner-gutters, $breakpoint)})
+        );
+      }
+    }
+  }
+}
+
+.fluid-grid {
+  width: calc(100vw - (#{$base-outter-margin} * 2));
+  max-width: calc(#{$base-max-container} - (#{$base-outter-margin} * 2));
+  margin: 0 auto;
+  overflow-x: hidden;
+
+  @include computeResponsiveGridWidth();
+}
+
+.row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 100%;
+  margin-right: (-$base-inner-gutter / 2);
+  margin-left: (-$base-inner-gutter / 2);
+
+  @include computeResponsiveRowMargins();
+}
+
+.col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+// SIMPLE COLUMNS
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    $ratio: ($i / $grid-columns);
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: calc(
+      (#{$ratio} * 100vw) -
+      (#{$ratio} * #{$base-outter-margin} * 2) +
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+    box-sizing: border-box;
+    width: calc(
+      (#{$ratio} * 100vw) -
+      (#{$ratio} * #{$base-outter-margin} * 2) +
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+    max-width: calc(
+      (#{$ratio} * #{$base-max-container}) -
+      (#{$ratio} * #{$base-outter-margin} * 2) +
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+    padding-right: ($base-inner-gutter / 2);
+    padding-left: ($base-inner-gutter / 2);
+
+    @include computeResponsiveColWidth($ratio, $responsive-max-containers, $responsive-outter-margins, $responsive-inner-gutters);
+  }
+}
+
+// SIMPLE COLUMN SPACINGS
+@for $i from 0 through $grid-columns {
+  .col-offset-#{$i} {
+    $ratio: ($i / $grid-columns);
+    margin-left: calc(
+      (#{$ratio} * 100vw) -
+      (#{$ratio} * #{$base-outter-margin} * 2) +
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+    
+    @include computeResponsiveColOffset($ratio, $responsive-max-containers, $responsive-outter-margins, $responsive-inner-gutters);
+  }
+
+  .col-overlap-#{$i} {
+    $ratio: ($i / $grid-columns);
+    z-index: 2;
+    margin-right: calc(
+      (-#{$ratio} * 100vw) +
+      (#{$ratio} * #{$base-outter-margin} * 2) -
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+
+    @include computeResponsiveColXLap($ratio, $responsive-max-containers, $responsive-outter-margins, $responsive-inner-gutters);
+  }
+
+  .col-underlap-#{$i} {
+    $ratio: ($i / $grid-columns);
+    z-index: -1;
+    margin-right: calc(
+      (-#{$ratio} * 100vw) +
+      (#{$ratio} * #{$base-outter-margin} * 2) -
+      (#{$ratio} * #{$base-inner-gutter})
+    );
+
+    @include computeResponsiveColXLap($ratio, $responsive-max-containers, $responsive-outter-margins, $responsive-inner-gutters);
+  }
+}
+
+// RESPONSIVE COLUMNS
+@each $breakpoint, $value in $breakpoints {
+  $partial-max-containers: ();
+  $partial-outter-margins: ();
+  $partial-inner-gutters: ();
+
+  // Create a map of max-containers and outter-gutters with breakpoints higher than the one set
+  // on the class.
+  @each $resp-breakpoint, $max-width in $responsive-max-containers {
+    $base-bp-index: index($breakpoints-keys, $breakpoint);
+    $resp-bp-index: index($breakpoints-keys, $resp-breakpoint);
+
+    @if ($resp-bp-index >= $base-bp-index) {
+      $partial-max-containers: map-merge($partial-max-containers, ($resp-breakpoint: $max-width));
+      $partial-outter-margins: map-merge($partial-outter-margins, ($resp-breakpoint: map-get($responsive-outter-margins, $resp-breakpoint)));
+      $partial-inner-gutters: map-merge($partial-inner-gutters, ($resp-breakpoint: map-get($responsive-inner-gutters, $resp-breakpoint)));
+    }
+  }
+
+  @include responsive($breakpoint) {
+    .#{$breakpoint}-col {
+      flex-grow: 0;
+      flex-shrink: 1;
+      flex-basis: calc(100% - #{($base-outter-margin * 2)} + #{$base-inner-gutter});
+      width: calc(100% - #{($base-outter-margin * 2)} + #{$base-inner-gutter});
+      padding-right: ($base-inner-gutter / 2);
+      padding-left: ($base-inner-gutter / 2);
+
+      @include computeResponsiveColWidth(100%, $partial-max-containers, $partial-outter-margins, $partial-inner-gutters);
+    }
+
+    // RESPONSIVE COLUMNS WIDTH
+    @for $i from 1 through $grid-columns {
+      .#{$breakpoint}-col-#{$i} {
+        $ratio: ($i / $grid-columns);
+        flex-basis: calc(
+          (#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+        width: calc(
+          (#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+        max-width: calc(
+          (#{$ratio} * #{$base-max-container}) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+        padding-right: ($base-inner-gutter / 2);
+        padding-left: ($base-inner-gutter / 2);
+
+        @include computeResponsiveColWidth($ratio, $partial-max-containers, $partial-outter-margins, $partial-inner-gutters);
+      }
+    }
+
+    // RESPONSIVE COLUMN SPACINGS
+    @for $i from 0 through $grid-columns {
+      .#{$breakpoint}-col-offset-#{$i} {
+        $ratio: ($i / $grid-columns);
+
+        margin-left: calc(
+          (#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+
+        @include computeResponsiveColOffset($ratio, $partial-max-containers, $partial-outter-margins, $partial-inner-gutters);
+      }
+
+      .#{$breakpoint}-col-overlap-#{$i} {
+        $ratio: ($i / $grid-columns);
+
+        z-index: 2;
+        margin-right: calc(
+          (-#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+
+        @include computeResponsiveColXLap($ratio, $partial-max-containers, $partial-outter-margins, $partial-inner-gutters);
+      }
+
+      .#{$breakpoint}-col-underlap-#{$i} {
+        $ratio: ($i / $grid-columns);
+        
+        z-index: -1;
+        margin-right: calc(
+          (-#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+
+        @include computeResponsiveColXLap($ratio, $partial-max-containers, $partial-outter-margins, $partial-inner-gutters);
+      }
+    }
+  }
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+
+  @for $i from 0 through $grid-columns {
+    .col-unoffset-#{$i} {
+      $ratio: ($i / $grid-columns);
+      margin-right: calc(
+        (#{$ratio} * 100vw) -
+        (#{$ratio} * #{$base-outter-margin} * 2) +
+        (#{$ratio} * #{$base-inner-gutter})
+      );      
+    }
+  }
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include responsive($breakpoint) {
+    .#{$breakpoint}-row-reverse {
+      flex-direction: row-reverse;
+    }
+
+    @for $i from 0 through $grid-columns {
+      .#{$breakpoint}-col-unoffset-#{$i} {
+        $ratio: ($i / $grid-columns);
+        margin-right: calc(
+          (#{$ratio} * 100vw) -
+          (#{$ratio} * #{$base-outter-margin} * 2) +
+          (#{$ratio} * #{$base-inner-gutter})
+        );
+      }
+    }
+  }
+}

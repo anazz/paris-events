@@ -1,10 +1,11 @@
-.home-wrapper {
-    // $breakpoint-tablet: 768px;
-    // $breakpoint-phone: 576px;
-    // $breakpoint-small-phone: 337px;
+@import './src/style/styles.scss';
 
+.home-wrapper {
     position: relative;
 
+    @include max-responsive(md) {
+        margin-left: 0;
+    }
     // @media (max-width: $breakpoint-phone) {
     //     margin-left: 3rem;
     // }
@@ -17,48 +18,64 @@
         position: relative;
         
         h1 {
-            margin-top: 3rem;
+            margin-top: 5rem;
             text-align: center;
 
-            &:before {
-                content: "";
-                position: absolute;
-                top: -1rem;
-                left: -650px;
-                display: block;
-                width: 10rem;
-                height: 0.2rem;
-                background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
-                animation: slide 0.5s forwards;
-                animation-delay: 1s;
+            // &:before {
+            //     content: "";
+            //     position: absolute;
+            //     top: 30px;
+            //     left: 50px;
+            //     display: block;
+            //     width: 10rem;
+            //     height: 0.2rem;
+            //     background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
+            //     animation: slide 0.5s forwards;
+            //     animation-delay: 1s;
                 
-                @keyframes slide {
-                    100% { left: 14rem; }
-                }
-            }
+            //     @keyframes slide {
+            //         100% { left: 14rem; }
+            //     }
+
+            //     @include max-responsive(md) {
+            //         @keyframes slide {
+            //             100% { left: 9rem; }
+            //         }
+            //     }
+            // }
     
-            &:after {
-                content: "";
-                position: absolute;
-                right: -650px;
-                top: 3.7rem;
-                display: block;
-                width: 14rem;
-                height: 0.2rem;
-                background: linear-gradient(90deg,#6e7af7 0%, #9bf8f3 100%);
-                animation: slidein 0.5s forwards;
-                animation-delay: 1s;
+            // &:after {
+            //     content: "";
+            //     position: absolute;
+            //     right: -650px;
+            //     top: 3.7rem;
+            //     display: block;
+            //     width: 14rem;
+            //     height: 0.2rem;
+            //     background: linear-gradient(90deg,#6e7af7 0%, #9bf8f3 100%);
+            //     animation: slidein 0.5s forwards;
+            //     animation-delay: 1s;
                 
-                @keyframes slidein {
-                    100% { right: 10rem; }
-                }
-            }
+            //     @keyframes slidein {
+            //         100% { right: 10rem; }
+            //     }
+
+            //     @include max-responsive(md) {
+            //         @keyframes slidein {
+            //             100% { right: 7rem; }
+            //         }
+            //     }
+            // }
             
         }
     }
 
     .description-wrapper {
         margin: 3rem;
+
+        @include max-responsive(md) {
+            margin: 2rem;
+        }
 
         // @media (max-width: $breakpoint-phone) {
         //     margin: 2rem;
@@ -81,12 +98,9 @@
             margin-left: 1rem;
             font-size: 38px;
 
-            // @media (max-width: $breakpoint-phone) {
-            //     font-size: 30px;
-            // } 
-
-            .first, .second, .third  {
-                letter-spacing: 1.2rem;
+            @include max-responsive(md) {
+                margin-left: 0;
+                font-size: 30px;
             }
         }
     }
@@ -107,6 +121,10 @@
             transition: transform .2s;
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
+            @include max-responsive(md) {
+                width: 38vh;
+            }
+
             // @media (max-width: $breakpoint-phone) {
             //     width: 37vh;
             // }
@@ -117,6 +135,10 @@
     
             img {
                 width: 50vh;
+
+                @include max-responsive (md) {
+                    width: 37vh;
+                }
 
                 // @media (max-width: $breakpoint-phone) {
                 //     width: 37vh;
@@ -129,6 +151,7 @@
                 margin: 1rem;
     
                 .card-title {
+                    color: #E4B363;
                     font-size: 18px;
                 }
     
@@ -157,7 +180,13 @@
             }
     
             .card-date {
-                margin-bottom: 1rem;
+                color: #71A9F7;
+                margin: 0 2rem 1rem 2rem;
+            }
+
+            .card-event-description {
+                color: #313638;
+                margin: 0 2rem 1rem 2rem;
             }
         }
     }

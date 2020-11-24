@@ -1,8 +1,6 @@
-.event-main-wrapper {
-    // $breakpoint-tablet: 768px;
-    // $breakpoint-phone: 576px;
-    // $breakpoint-small-phone: 337px;
+@import './src/style/styles.scss';
 
+.event-main-wrapper {
     .event-wrapper {
         display: flex;
         margin-top: 3rem;
@@ -16,10 +14,15 @@
 
         .left-wrapper {
             max-width: 60%;
+            margin-left: 5rem;
 
             // @media (max-width: $breakpoint-phone) {
             //     max-width: 83%;
             // }
+
+            h4 {
+                color: #E4B363;
+            }
             
             .poster-wrapper {
                 max-height: 370px;
@@ -36,12 +39,13 @@
             }
 
             .description-wrapper {
+                color: #313638;
                 max-width: 100%;
             }
         }
         
         .right-wrapper {
-            margin: 2rem 6rem 0;
+            margin: 2rem 5rem 0;
 
             // @media (max-width: $breakpoint-phone) {
             //     margin: 0 1rem 0 0;

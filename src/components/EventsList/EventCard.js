@@ -47,6 +47,31 @@ const EventCard = (props) => {
     // const [storageKeys, setStorageKeys] = useState([]);
 
     // const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+    const reloadLikes = () => {
+        const favorites = JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [];
+        if (favorites) {
+            return favorites.find(element => element.record.id === id);
+        } //else {
+            // favorites.push(props.event);
+            // setLikes(true);
+            // console.log('Favoris ajouté !');
+
+            // return localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+        //}
+    }
+
+    /* Date format change */
+    const stringDate = new Date(record.fields.date_start.slice(0, 10)); 
+    const eventDate = () => {
+        const day = stringDate.getDate() + '-';
+        const year = '-' + stringDate.getFullYear();
+        if (stringDate.getMonth() < 10) {
+            return day + '0' + stringDate.getMonth() + year;
+        } else {
+            return day + stringDate.getMonth() + year;
+        } 
+    }  
+    // console.log(eventDate());
 
     // console.log(storage);
     // const filterEvent = storage.filter(element => element.record.id == id);
@@ -56,24 +81,25 @@ const EventCard = (props) => {
 
 	return (
         <div className="event-card-wrapper">
-            <Link to={`/event/${id}`} params={id}>
+            <Link className="link-event-page" to={`/event/${id}`} params={id}>
                 <img src={record.fields.cover.url} alt=""/>
+                <div className="card-top-wrapper">  
+                    <span className="card-title">{record.fields.title}</span>
+                    <a href="/#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
+                        <div className="icon" id="#icon">
+                            {/* <span>&#128151;</span>
+                            <i class="fa">&#xf08a;</i> */}
+                            <i className={likes === true || 
+                            window.location.pathname === "/favorites" || 
+                            reloadLikes()
+                            // (storage : storage.find(element => element.record.id === id) ? window.location.reload())
+                            ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </div>
+                <span className="card-date">À partir de: {eventDate()}</span>
+                <p className="card-event-description">{record.fields.lead_text}</p>
             </Link>
-            <div className="card-top-wrapper">  
-                <span className="card-title">{record.fields.title}</span>
-                <a href="/#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
-                    <div className="icon" id="#icon">
-                        {/* <span>&#128151;</span> */}
-                        {/* <i class="fa">&#xf08a;</i> */}
-                        <i className={likes === true || 
-                        window.location.pathname === "/favorites"
-                        // storage.find(element => element.record.id === id)
-                        ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
-                    </div>
-                </a>
-            </div>
-            <span className="card-date">{record.fields.date_start}</span>
-            <p className="event-description">{record.fields.lead_text}</p>
         </div>
 	);
 };

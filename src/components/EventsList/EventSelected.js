@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './EventSelected.scss'
+import './EventSelected.scss';
 
 const EventSelected = (props) => {
     
@@ -91,6 +91,18 @@ const EventSelected = (props) => {
     // console.log(findEvent);
     // storage.forEach(element => console.log(Array.from((element.record.id))));
 
+    /* Date format change */
+    // const stringDate = new Date(results.date_start.slice(0, 10)); 
+    // const eventDate = () => {
+    //     const day = stringDate.getDate() + '-';
+    //     const year = '-' + stringDate.getFullYear();
+    //     if (stringDate.getMonth() < 10) {
+    //         return day + '0' + stringDate.getMonth() + year;
+    //     } else {
+    //         return day + stringDate.getMonth() + year;
+    //     } 
+    // }
+
     return (   
         <div className="event-main-wrapper">
             <div className="event-wrapper">
@@ -138,7 +150,7 @@ const EventSelected = (props) => {
                         </div>
                         <div className="contact-info-wrapper">
                             <span>Contact: </span>
-                            <span role="img" aria-label="xxxxx">☎️:{results.contact_phone}</span>
+                            <span role="img" aria-label="xxxxx">☎️: {results.contact_phone}</span>
                         </div>
                     </div>
                 </div>

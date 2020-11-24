@@ -1,0 +1,28 @@
+@mixin responsive($class) {
+  @if map-has-key($breakpoints, $class) {
+    $value: map-get($breakpoints, $class);
+
+    @media screen and (min-width: #{$value}px) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Responsive mixin doesn't support this value";
+  }
+}
+  
+@mixin max-responsive($class) {
+  @if map-has-key($breakpoints, $class) {
+    $value: map-get($breakpoints, $class);
+
+    @media screen and (max-width: #{$value - 1}px) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Max responsive mixin doesn't support this value";
+  }
+}
+  

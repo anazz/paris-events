@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
+import './custom.scss';
 import './App.scss';
+/* Components */
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import EventsList from './components/EventsList/EventsList';
@@ -32,49 +34,55 @@ function App() {
 
     return (
         <Router>
-        <div className="App">
-            {/* Navbar */}
-            <Navbar />
-            <Switch>
-            {/* Route for Home */}
-            <Route 
-                exact path='/'
-                render={()=>
-                <Fragment>
-                    {eventsResults.map(event => (
-                    <Home prods={Home} 
-                        key= {event.record.id}
-                        event={event}
-                    />
-                    ))}
-                </Fragment>
-                }
-            />
-            {/* Route for Events List */}
-            <Route 
-                exact path='/events'
-                render={()=>
-                <Fragment>
-                    <EventsList prods={EventsList}/>
-                </Fragment>
-                }
-            />
-            {/* Route for Event */}
-            <Route 
-                exact path='/event/:id'
-                children={<EventSelected />}
-            />
-            {/* Route for Favorite Events */}
-            <Route 
-                exact path='/favorites'
-                render={(props)=>
-                <Fragment>
-                    <FavoriteEvents prods={FavoriteEvents}/>
-                </Fragment>
-                }
-            />
-            </Switch>
-        </div>
+            <div className="App">
+                <div className="fluid-grid">
+                    <div className="row">
+                        {/* Navbar */}
+                        <Navbar />
+                        <div className="col-offset-2">
+                        <Switch>
+                        {/* Route for Home */}
+                        <Route 
+                            exact path='/'
+                            render={()=>
+                            <Fragment>
+                                {eventsResults.map(event => (
+                                <Home prods={Home} 
+                                    key= {event.record.id}
+                                    event={event}
+                                />
+                                ))}
+                            </Fragment>
+                            }
+                        />
+                        {/* Route for Events List */}
+                        <Route 
+                            exact path='/events'
+                            render={()=>
+                            <Fragment>
+                                <EventsList prods={EventsList}/>
+                            </Fragment>
+                            }
+                        />
+                        {/* Route for Event */}
+                        <Route 
+                            exact path='/event/:id'
+                            children={<EventSelected />}
+                        />
+                        {/* Route for Favorite Events */}
+                        <Route 
+                            exact path='/favorites'
+                            render={(props)=>
+                            <Fragment>
+                                <FavoriteEvents prods={FavoriteEvents}/>
+                            </Fragment>
+                            }
+                        />
+                        </Switch>
+                        </div>
+                    </div> 
+                </div>    
+            </div>
         </Router>
     );
 }

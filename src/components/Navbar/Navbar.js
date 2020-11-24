@@ -5,6 +5,7 @@ import './Navbar.scss';
 const Navbar = (props) => {
     return (
         <div className="navbar-wrapper">
+            <img className="homepage-image" src="./images/paris-events-logo.jpg" alt="homepage logo" />
             <ul>
                 <li>
                     <Link to='/'>Accueil</Link>
@@ -15,7 +16,7 @@ const Navbar = (props) => {
                 <li>
                     <Link to='/favorites'>Favoris</Link>
                 </li>
-            </ul>
+            </ul>           
         </div>
     )   
 };

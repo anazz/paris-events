@@ -1,4 +1,5 @@
 import './custom.scss';
+import './style/styles.scss';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import React from 'react';

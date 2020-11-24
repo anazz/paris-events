@@ -1,15 +1,8 @@
-$breakpoint-tablet: 768px;
-$breakpoint-phone: 576px;
-$breakpoint-small-phone: 337px;
+@import './src/style/styles.scss';
 
 .App {
-    display: flex;
     overflow: unset;
-    margin-left: 6rem;
-
-    // @media (max-width: $breakpoint-phone) {
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-left: 0px;
+    // @include max-responsive(md) {
+    //     margin-left: 1rem;
     // }
 }

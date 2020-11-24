@@ -1,0 +1,34 @@
+$grid-columns: 12;
+
+// MAX CONTAINER
+$base-max-container: 100vw;
+
+$responsive-max-containers: (
+  sm: 100vw,
+  md: 100vw,
+  lg: 100vw,
+  xl: 100vw
+);
+
+// OUTTER GUTTERs
+// outter-margin
+$base-outter-margin: 0px;
+$responsive-outter-margins: (
+  sm: 0px,
+  md: 0rem,
+  lg: 0rem,
+  xl: 0rem
+);
+
+// INNER GUTTER
+$base-inner-gutter: 0rem;
+$responsive-inner-gutters: (
+  sm: 0rem,
+  md: 0rem,
+  lg: 0rem,
+  xl: 0rem
+);
+
+// List of keys, used in layout.
+$breakpoints-keys: map-keys($breakpoints);
+$responsive-max-containers-keys: map-keys($responsive-max-containers);
