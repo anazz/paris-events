@@ -3,25 +3,32 @@
 .event-main-wrapper {
     .event-wrapper {
         display: flex;
-        margin-top: 3rem;
+        flex-direction: column;
+        margin-top: 0rem;
+        margin-bottom: 2rem;
 
-        // @media (max-width: $breakpoint-phone) {
-        //     display: flex;
-        //     flex-direction: column;
-        //     margin-top: 3rem;
-        //     margin-left: 5rem;
-        // }
+        @include responsive(md) {
+            display: flex;
+            flex-direction: row;
+            margin-top: 3rem;
+        }
 
         .left-wrapper {
-            max-width: 60%;
+            max-width: 70%;
             margin-left: 5rem;
 
-            // @media (max-width: $breakpoint-phone) {
-            //     max-width: 83%;
-            // }
+            @include responsive(md) {
+                max-width: 60%;
+                margin-left: 5rem;
+            }
 
             h4 {
                 color: #E4B363;
+                font-size: 22px;
+
+                @include responsive(md) {
+                    font-size: normal;
+                }
             }
             
             .poster-wrapper {
@@ -45,11 +52,11 @@
         }
         
         .right-wrapper {
-            margin: 2rem 5rem 0;
+            margin: 2rem 2rem 0 2.5rem;
 
-            // @media (max-width: $breakpoint-phone) {
-            //     margin: 0 1rem 0 0;
-            // }
+            @include responsive(md) {
+                margin: 2rem 4rem 0;
+            }
 
             .subscribe-wrapper {
                 margin: 0.3rem 0 1.5rem;

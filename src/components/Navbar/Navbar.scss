@@ -2,36 +2,92 @@
 
 .navbar-wrapper {
     display: flex;
-    margin-left: 4rem;
-    margin-right: 6rem;
+    margin-left: 0;
+    margin-right: 9rem;
 
-    @include max-responsive(md) {
-        margin-right: 5rem;
+    @include responsive(md) {
+        margin-left: 4rem;
+        margin-right: 6rem;
     }
 
+    .logo-light_box {
+        display: block;
+        position: relative;
+    }
     .homepage-image {
         position: fixed;
-        width: 90px;
-        height: 90px;
-        margin: 2.2rem;
+        width: 99px;
+        height: 99px;
+        top: -5px;
+        left: -3px;
+        margin: 1rem;
         border: 1px solid transparent;
         border-radius: 50%;
+
+        @include responsive(md) {
+            top: -5px;
+            left: 58px;
+            margin: 2.2rem;
+        }
+    }   
+    
+    .logo-light {   
+        display: block;
+        position: fixed;
+        width: 98.5px;
+        height: 98.5px;
+        top: 13px;
+        left: 12px;
+        right: 0;
+        z-index: 2;
+        border: 4px solid;
+        border-radius: 48%;
+        mix-blend-mode: screen;
+        
+        @include responsive(md) {
+            width: 98.5px;
+            height: 98.5px;
+            top: 29px;
+            left: 93px;
+        }
+    }
+    .logo-light_01 {
+        -webkit-animation: spin_this 3s ease-in-out infinite;
+        -moz-animation: spin_this 3s ease-in-out infinite;
+        animation: spin_this 3s ease-in-out infinite;
+        border-color: rgba(0,157,220,1);
+        box-shadow: 0 0 10px rgba(0,157,220,1), inset 0 0 10px rgba(0,157,220,1);
+    }
+    
+
+    @-webkit-keyframes spin_this {
+        0% { -webkit-transform: rotate(0deg) skewX(.1deg); }
+        60% { -webkit-transform: rotate(180deg) skewX(5deg); }
+        100% { -webkit-transform: rotate(360deg) skewX(.1deg); }
+    }
+    @-moz-keyframes spin_this {
+        0% { transform: rotate(0deg) skewX(.1deg); }
+        60% { transform: rotate(180deg) skewX(5deg); }
+        100% { transform: rotate(360deg) skewX(.1deg); }
+    }
+    @keyframes spin_this {
+        0% { transform: rotate(0deg) skewX(.1deg); }
+        60% { transform: rotate(180deg) skewX(5deg); }
+        100% { transform: rotate(360deg) skewX(.1deg); }
     }
     
     ul {
-        display: block;
-        margin: 4.5rem 0 0 1.5rem;
+        display: flex;
+        margin: 4.5rem 0 2rem 1.5rem;
         writing-mode: vertical-lr;
         text-orientation: upright;
         position: fixed;
         
-        @include max-responsive(md) {
-            display: flex;
+        @include responsive(md) {
+            display: block;
+            margin-top: 5rem;
+            margin-bottom: 0;
         }
-
-        // @media (max-width: $breakpoint-phone) {
-        //     display: flex;
-        // } 
     
         li {
             padding-top: 1rem;
@@ -40,11 +96,16 @@
 
             a {
                 color: #009DDC;
-                font-size: 18px;
+                font-size: 16px;
                 text-decoration: unset;
 
                 &:hover {  
-                    color: #28a745;
+                    // color: #28a745;
+                    color: #F5CB5C;
+                }
+
+                @include responsive(md) {
+                    font-size: 18px;
                 }
             }
         }

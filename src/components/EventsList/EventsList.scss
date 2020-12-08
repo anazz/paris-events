@@ -1,29 +1,43 @@
 @import './src/style/styles.scss';
 
 .events-section-wrapper {
+    margin-top: 50px;
+
+    @include responsive(md){
+        margin-top: 0;
+    }
+
     form {
         display: flex;
         flex-direction: column;
 
-        input {
-            // width: 110%;
-            margin: 2rem auto;
-        }
-
-        // input:active {
-        //     width: 80%;
-        //     margin: 2rem auto;
-        // }
-
-        input::placeholder {
+        .mobile-placeholder {
+            display: none;
             font-style: italic;
             font-size: 16px;
         }
 
-        button {
-            // margin: 2rem auto 3rem;
+        input {
             margin: 2rem auto;
-            width: 30%;
+        }
+
+        input::placeholder {
+            font-style: italic;
+            font-size: 12px;
+
+            @include responsive(md) {
+                font-size: 16px;
+            }
+        }
+
+        button {
+            margin: 1rem auto;
+            width: 50%;
+
+            @include responsive(md) {
+                margin: 2rem auto;
+                width: 30%
+            }
         }
     }
 
@@ -32,11 +46,22 @@
         padding: 1em;
     }
 
-    h2 {
-        margin: 3rem auto 0 3rem;
-        color: #009DDC;
-        font-weight: 300;
-        letter-spacing: 0.7rem;   
+    .title-wrapper {
+        text-align: center;
+        
+        h2 {
+            margin: 4rem 1rem 0 26px;
+            color: #009DDC;
+            font-weight: 300;
+            font-size: 21px;
+            letter-spacing: 0.6rem;
+            
+            @include responsive(md) {
+                margin: 3rem 0 3rem;
+                font-size: 32px;
+                letter-spacing: 0.7rem;
+            }
+        }
     }
     
 
@@ -49,37 +74,34 @@
         top: 0;
         z-index: 999;
         list-style: none;
-
-        // @media (max-width: $breakpoint-phone) {
-        //     padding-left: 0;
-        // } 
     }
     
     .events-list-wrapper {
-        margin-left: 39px;
+        margin-left: 0px;
 
-        // @media (max-width: $breakpoint-phone) {
-        //     margin-left: 0;
-        // }
+        @include responsive(md) {
+            margin-left: 90px;
+        }
     }
 
     .event-card-wrapper {
-        width: 50vh;
+        position: relative;
         display: flex;
         flex-direction: column;
+        width: 36vh;
+        min-height: 340px;
         background-color: #fff;
-        min-height: 540px;
-        position: relative;
         overflow: hidden;
         transition: transform .2s;
         box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
-        // @media (max-width: $breakpoint-phone) {
-        //     width: 37vh;
-        // } 
-
         &:hover {
             transform: scale(1.05);
+        }
+
+        @include responsive(md) {   
+            width: 50vh;
+            min-height: 540px;    
         }
 
         .link-event-page {
@@ -90,10 +112,6 @@
 
         img {
             width: 50vh;
-
-            // @media (max-width: $breakpoint-phone) {
-            //     width: 37vh;
-            // }
         }
         
         .card-top-wrapper {
@@ -109,30 +127,27 @@
             .subscribe {
                 color: red;
                 text-decoration: none;
-
-                // i {
-                //     &:hover {
-                //         background-color: hotpink;
-                //     }  
-                // }
             }
 
             .icon {
                 border: 1px solid hotpink;
                 width: 2rem;
                 text-align: center;
-                // span {
-                //     font-size: 1rem;
-                // }
-                // &:hover {
-                //     background-color: hotpink;
-                // }
+
+                &:hover {
+                    background-color: lightblue;
+                    overflow: hidden;
+                }
             }
         }
 
         .card-date {
             color: #71A9F7;
-            margin: 0 2rem 1rem 2rem;
+            margin: 0 1rem 2rem 1rem;
+
+            @include responsive(md) {
+                margin: 0 2rem 1rem 2rem;
+            }
         }
 
         .card-event-description {

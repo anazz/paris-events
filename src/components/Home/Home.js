@@ -8,12 +8,12 @@ const Home = (props) => {
     const id = props.event.record.id;
     const event = props.event;
     console.log(id);
-    
+   
     return (
         <div className="home-wrapper">
             <div className="fluid-grid">
                 <div className="row">
-                    <div className="col-9">
+                    <div className="col-offset-1 col-9 md-col-7">
                         <div className="title-wrapper">
                             <h1>Paris Events</h1>
                         </div>
@@ -21,7 +21,6 @@ const Home = (props) => {
                             <p>L'application qui permet de rechercher en direct les prochains événements Parisiens</p>
                         </div>
                         <div className="comming-soon-wrapper">
-                            {/* <h2 className="comming-soon-title">Actualité</h2> */}
                             <p className="comming-soon-description">Le dernier événement publié :</p>
                         </div>
                         <div className="events-wrapper">

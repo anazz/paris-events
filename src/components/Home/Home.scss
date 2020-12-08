@@ -1,14 +1,11 @@
 @import './src/style/styles.scss';
 
 .home-wrapper {
-    position: relative;
+    margin-left: 0;
 
-    @include max-responsive(md) {
-        margin-left: 0;
+    @include responsive(md) {
+        position: relative;
     }
-    // @media (max-width: $breakpoint-phone) {
-    //     margin-left: 3rem;
-    // }
 
     ul {
         list-style: none;
@@ -19,67 +16,71 @@
         
         h1 {
             margin-top: 5rem;
+            // background: -webkit-linear-gradient(#A89787, #EC7D10);
+            background: -webkit-linear-gradient(#FFBC0A, #F5CB5C);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
 
-            // &:before {
-            //     content: "";
-            //     position: absolute;
-            //     top: 30px;
-            //     left: 50px;
-            //     display: block;
-            //     width: 10rem;
-            //     height: 0.2rem;
-            //     background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
-            //     animation: slide 0.5s forwards;
-            //     animation-delay: 1s;
+            &:before {
+                content: "";
+                position: absolute;
+                top: -12px;
+                left: 500px;
+                display: block;
+                width: 10rem;
+                height: 0.2rem;
+                background: linear-gradient(90deg, #9bf8f3 0%, #6e7af7 100%);
+                animation: slide 0.5s forwards;
+                animation-delay: 1s;
                 
-            //     @keyframes slide {
-            //         100% { left: 14rem; }
-            //     }
+                @keyframes slide {
+                    100% { left: 11rem; }
+                }
 
-            //     @include max-responsive(md) {
-            //         @keyframes slide {
-            //             100% { left: 9rem; }
-            //         }
-            //     }
-            // }
+                @include responsive(md) {
+                    left: -500px;
+
+                    @keyframes slide {
+                        100% { left: 9rem; }
+                    }
+                }
+            }
     
-            // &:after {
-            //     content: "";
-            //     position: absolute;
-            //     right: -650px;
-            //     top: 3.7rem;
-            //     display: block;
-            //     width: 14rem;
-            //     height: 0.2rem;
-            //     background: linear-gradient(90deg,#6e7af7 0%, #9bf8f3 100%);
-            //     animation: slidein 0.5s forwards;
-            //     animation-delay: 1s;
+            &:after {
+                content: "";
+                position: absolute;
+                right: 650px;
+                top: 3.7rem;
+                display: block;
+                width: 14rem;
+                height: 0.2rem;
+                background: linear-gradient(90deg,#6e7af7 0%, #9bf8f3 100%);
+                animation: slidein 0.5s forwards;
+                animation-delay: 1s;
                 
-            //     @keyframes slidein {
-            //         100% { right: 10rem; }
-            //     }
+                @keyframes slidein {
+                    100% { right: 11rem; }
+                }
 
-            //     @include max-responsive(md) {
-            //         @keyframes slidein {
-            //             100% { right: 7rem; }
-            //         }
-            //     }
-            // }
+                @include responsive(md) {
+                    right: -650px;
+                    @keyframes slidein {
+                        100% { right: 7rem; }
+                    }
+                }
+            }
             
         }
     }
 
     .description-wrapper {
-        margin: 3rem;
+        margin: 2rem;
 
-        @include max-responsive(md) {
-            margin: 2rem;
+        @include responsive(md) {
+            margin: 3rem;
         }
-
-        // @media (max-width: $breakpoint-phone) {
-        //     margin: 2rem;
-        // }
 
         h2 {
             font-size: 1.5rem;
@@ -96,11 +97,11 @@
         
         .comming-soon-title {
             margin-left: 1rem;
-            font-size: 38px;
+            font-size: 30px;
 
-            @include max-responsive(md) {
-                margin-left: 0;
-                font-size: 30px;
+            @include responsive(md) {
+                margin-left: 1rem;
+                font-size: 38px;
             }
         }
     }
@@ -110,39 +111,37 @@
         justify-content: center;
         margin-bottom: 5rem;
 
+        .link-event-page {
+            &:hover {
+                text-decoration: unset; 
+            }
+        }
+
        .event-card-wrapper {
             display: flex;
             flex-direction: column;
             position: relative;
-            width: 50vh;
+            width: 38vh;
             min-height: 540px;
             background-color: #fff;
             overflow: hidden;
             transition: transform .2s;
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
-            @include max-responsive(md) {
-                width: 38vh;
+            @include responsive(md) {
+                width: 50vh;
             }
-
-            // @media (max-width: $breakpoint-phone) {
-            //     width: 37vh;
-            // }
     
             &:hover {
                 transform: scale(1.05);
             }
     
             img {
-                width: 50vh;
+                width: 100%;
 
-                @include max-responsive (md) {
-                    width: 37vh;
+                @include responsive(md) {
+                    width: 50vh;
                 }
-
-                // @media (max-width: $breakpoint-phone) {
-                //     width: 37vh;
-                // }
             }
             
             .card-top-wrapper {
@@ -158,24 +157,16 @@
                 .subscribe {
                     color: red;
                     text-decoration: none;
-    
-                    // i {
-                    //     &:hover {
-                    //         background-color: hotpink;
-                    //     }  
-                    // }
                 }
     
                 .icon {
                     border: 1px solid hotpink;
                     width: 2rem;
                     text-align: center;
-                    // span {
-                    //     font-size: 1rem;
-                    // }
-                    // &:hover {
-                    //     background-color: hotpink;
-                    // }
+
+                    &:hover {
+                        background-color: lightblue;
+                    }
                 }
             }
     

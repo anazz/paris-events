@@ -5,10 +5,17 @@ import './Navbar.scss';
 const Navbar = (props) => {
     return (
         <div className="navbar-wrapper">
-            <img className="homepage-image" src="./images/paris-events-logo.jpg" alt="homepage logo" />
+            <Link to='/'>
+                <div className="logo-light_box">
+                    <div className="logo-light logo-light_01"></div>
+                    <div className="logo-light logo-light_02"></div>
+                    <div className="logo-light logo-light_03"></div>
+                    <img className="homepage-image" src="./images/paris-events-logo.jpg" alt="homepage logo" />
+                </div>
+            </Link>   
             <ul>
                 <li>
-                    <Link to='/'>Accueil</Link>
+                <Link to='/'>Accueil</Link>
                 </li>
                 <li>
                     <Link to='/events'>Liste des événements</Link>  
@@ -16,8 +23,8 @@ const Navbar = (props) => {
                 <li>
                     <Link to='/favorites'>Favoris</Link>
                 </li>
-            </ul>           
-        </div>
+            </ul> 
+        </div>          
     )   
 };
 

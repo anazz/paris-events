@@ -13,15 +13,14 @@ const EventCard = (props) => {
 
     const toggleFavorite = (event) => {
         const favorites = JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [];
-        
-        
-        // Vérification de la présence de "event" dans le tableau de favoris
-        // Si présent, on le retire, sinon on l'ajoute
+       
+        // Checking the presence of an event in the favorites array
+        // If it's present great, otherwise we add it
 
         let favIndex = favorites.findIndex(fav => fav.record.id === event.record.id);
 
         if (favIndex > -1) {
-            // Suppression dans le tableau
+            // Delete in the array
             favorites.splice(favIndex, 1);
             // window.location.reload();
             setLikes(false);
@@ -30,12 +29,12 @@ const EventCard = (props) => {
             }
             console.log('Favoris retiré !');
         } else {
-            // Ajout dans le tableau
+            // Add to array
             favorites.push(event);
             setLikes(true);
             console.log('Favoris ajouté !');
         }
-        // Sauvegarde du tableau modifié
+        // Saving the modified array
         localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
     };
 
@@ -43,24 +42,16 @@ const EventCard = (props) => {
     const record = props.event.record;
 
     /* Check if event is in Local Storage, to apply a certain style on the event card */
-    // const STORAGE_KEY = 'favoriteEvents';
-    // const [storageKeys, setStorageKeys] = useState([]);
 
-    // const storage = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
     const reloadLikes = () => {
         const favorites = JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || [];
         if (favorites) {
             return favorites.find(element => element.record.id === id);
-        } //else {
-            // favorites.push(props.event);
-            // setLikes(true);
-            // console.log('Favoris ajouté !');
-
-            // return localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-        //}
+        }
     }
 
     /* Date format change */
+    
     const stringDate = new Date(record.fields.date_start.slice(0, 10)); 
     const eventDate = () => {
         const day = stringDate.getDate() + '-';
@@ -70,14 +61,7 @@ const EventCard = (props) => {
         } else {
             return day + stringDate.getMonth() + year;
         } 
-    }  
-    // console.log(eventDate());
-
-    // console.log(storage);
-    // const filterEvent = storage.filter(element => element.record.id == id);
-    // const findEvent = storage.find(element => element.record.id == id);
-    // console.log(findEvent);
-    // storage.forEach(element => console.log(Array.from((element.record.id))));
+    }
 
 	return (
         <div className="event-card-wrapper">
@@ -86,13 +70,10 @@ const EventCard = (props) => {
                 <div className="card-top-wrapper">  
                     <span className="card-title">{record.fields.title}</span>
                     <a href="/#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
-                        <div className="icon" id="#icon">
-                            {/* <span>&#128151;</span>
-                            <i class="fa">&#xf08a;</i> */}
+                        <div className="icon" id="icon">
                             <i className={likes === true || 
                             window.location.pathname === "/favorites" || 
                             reloadLikes()
-                            // (storage : storage.find(element => element.record.id === id) ? window.location.reload())
                             ? 'fa fa-heart' : 'fa fa-heart-o'} aria-hidden="true"></i>
                         </div>
                     </a>
