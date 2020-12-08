@@ -69,7 +69,7 @@ const EventCard = (props) => {
                 <img src={record.fields.cover.url} alt=""/>
                 <div className="card-top-wrapper">  
                     <span className="card-title">{record.fields.title}</span>
-                    <a href="/#" id="#subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
+                    <a href="/#" id="subscribe" className="subscribe" onClick={(e) => {e.preventDefault(); toggleFavorite(props.event)}}>                   
                         <div className="icon" id="icon">
                             <i className={likes === true || 
                             window.location.pathname === "/favorites" || 
